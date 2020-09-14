@@ -1,0 +1,264 @@
+@import '../theme/theme.scss';
+
+// Movbile Navbar inspiration from: https://www.cssscript.com/pure-css-fold-out-navigation-menu/
+
+
+.dropdown {
+  text-decoration: none;
+  z-index: 2;
+  height: 100%;
+
+  p{
+    margin:0;
+    padding: 4px 4px;
+    font-size: 1rem;
+    border: none;
+    text-decoration: none;
+    margin-bottom: $margin;
+    color:$theme-interact;
+
+  }
+}
+
+.dropdownContent {
+  display: none;
+  min-width: 100%;
+  padding: 12px;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: fit-content;
+
+  a{
+    width: 100px;
+    padding: 4px 4px;
+    font-size: 1rem;
+    border: none;
+    text-decoration: none;
+    display: block;
+    
+  }
+}
+
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdown a {
+  cursor: pointer;
+  padding: $padding;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+
+.icons{
+  position: relative;
+  bottom: -95%;
+  font-size: 2rem;
+  color: $theme-light;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  gap: 8px;
+  transition: all 0.3s ease;
+  width: 75px;
+  left: 40%;
+}
+
+.menu_shown{
+  display: grid;
+  grid-template-columns: 1fr;
+  width: auto;
+  list-style-type: none;
+  background-color:$theme-field-bg;
+  color:$theme-interact;
+
+  a {
+    font-size: 1rem;
+    border: none;
+    text-decoration: none;
+    margin-bottom: $margin/2;
+    margin-top: $margin/2;
+  }
+}
+
+.link{
+  color:$theme-interact;
+}
+
+.aside{
+
+  
+}
+
+
+// Variables needed to control the position as well as the size of the burgermenu
+// Change these values to change behaviour
+$bar-width: 36px;
+$bar-height:5px;
+$bar-margin: 4px;
+$position:fixed;
+$left:auto;
+$right:0;
+$top:8px;
+$bottom:0;
+$color: $theme-dark;
+$border-radius: 3px;
+
+
+// Mixins used for control over look and feel as well as positions of spans
+ @mixin spanBar($width, $height){
+    display: block;
+    width: $width;
+    height: $height;
+    background-color: $color;
+    margin: $bar-margin;
+    border-radius: $border-radius;
+    padding: 0;
+    transition: ease 0.4s;
+ }
+
+ @mixin burgerMenu($position,$left,$right,$top,$down){
+    display:block;
+    position: $position;
+    left: $left;
+    right: $right;
+    top: $top;
+    bottom: $bottom;
+    width: auto;
+    height: fit-content;
+    cursor: pointer;
+ }
+
+// Set box sizing on body and create two classes which include the necessary mixins
+body{
+    box-sizing: border-box;
+  .burger-container{
+    position:absolute;
+    left: 25%;
+    top: 25%;
+  }
+}
+
+.burger_menu{
+    @include burgerMenu($position,$left,$right,$top,$bottom);
+    span{
+        @include spanBar($bar-width, $bar-height);
+    }
+}
+
+// Then transform position and rotation on all the children
+.burger_menu_collapsed{
+    @include burgerMenu($position,$left,$right,$top,$bottom);
+    
+    // First span gets moved down equal to (its own height + margin) * 1, and rotated +45 deg.
+    span:nth-child(1){
+        @include spanBar($bar-width, $bar-height);
+        transform:translateY(($bar-height + $bar-margin)*1) rotate(45deg);
+        background-color: invert($color: $color);
+    }
+    
+    // Second span gets scaled to 0, thus zooming in and dissapearing.
+    span:nth-child(2){
+        @include spanBar($bar-width, $bar-height);
+        transform: scale(0);
+        background-color: invert($color: $color);
+    }
+    
+    // Third span gets gets moved up equal to negative its own (height + margin) * 1 and rotated -45deg.
+    span:nth-child(3){
+        @include spanBar($bar-width, $bar-height);
+        transform:translateY((-$bar-height - $bar-margin)*1) rotate(-45deg);
+        background-color: invert($color: $color);
+    }    
+}
+
+@media screen and (max-width: 1450px) {
+  .menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    position: absolute;
+    width: auto;
+    margin: -100px 0 0 -25px;
+    margin-top: 60px;
+    list-style-type: none;
+    transform-origin: 0% 0%;
+    transform: translate(120%, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  
+    a {
+      padding: 4px 4px;
+      font-size: 1rem;
+      color: white;
+      border: none;
+      text-decoration: none;
+      border-bottom: 2px white solid;
+      margin-bottom: $margin;
+  
+    }
+  }
+  
+  .menu_shown{
+    display: grid;
+    grid-template-columns: 1fr;
+    position: absolute;
+    width: auto;
+    margin: -100px 0 0 -25px;
+    margin-top: 60px;
+    list-style-type: none;
+    transform-origin: 0% 0%;
+    transform: translate(0, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  
+    a {
+      padding: 4px 4px;
+      font-size: 1rem;
+      color: white;
+      border: none;
+      text-decoration: none;
+      border-bottom: 2px white solid;
+      margin-bottom: $margin;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+
+  .aside{
+    width: 20vw;
+  }
+
+  .aside_collapsed{
+    width: 20vw;
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+
+  .aside{
+    width: 30vw;
+  }
+
+  .aside_collapsed{
+    width: 30vw;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  .aside{
+    width: 40vw;
+  }
+
+  .aside_collapsed{
+    width: 40vw;
+  }
+
+}

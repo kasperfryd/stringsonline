@@ -1,0 +1,38 @@
+@import '../../components/theme/theme.scss';
+
+.wrapper {
+    padding: 0;
+    margin: auto;
+    box-shadow: 0px 6px 8px 1px rgba(0,0,0,0.2);
+    width: 100%;
+}
+
+.accordion{
+    width: 100%;
+    margin: auto;
+    cursor: pointer;
+    text-align: center;
+    padding-top:$padding;
+    padding-bottom:$padding;
+    background-color: $theme-color;
+    color: white;
+    font-size: $font-size-l;
+}
+
+.shown{
+    height: auto;
+    opacity: 1;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-top:$padding;
+    padding-bottom:$padding;
+    margin: 0;
+}
+
+.hidden {
+    opacity: 0;
+    text-align: center;
+    margin: 0;
+    height: 0px;
+}

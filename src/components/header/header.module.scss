@@ -1,0 +1,75 @@
+@import '../theme/theme.scss';
+
+.wrapper{
+    background-color: $theme-bg-dark;
+    color:white;
+    a{
+        color:white;
+        text-decoration: none;
+    }
+    width: 90%;
+    margin:auto;
+}
+
+.topGrid{
+    display: grid;
+    grid-template-columns: 10fr 1fr 1fr 1fr;
+    gap: 8px;
+    align-content: center;
+    justify-content: center;
+}
+
+.navGrid{
+    display: inline-grid;
+    grid-template-columns: 3fr 0.7fr 1fr 0.5fr;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px white;
+    padding: $padding;
+    border-radius: 8px;
+    gap: 8px;
+    button{
+        width: 140px;
+        height: 40px;
+        background-color: $theme-interact;
+        border:none;
+        border-radius: 4px;
+    }
+
+}
+
+    .searchGrid{
+        margin: 8px;
+        display:inline-grid;
+        grid-template-columns:2fr 1fr;
+        input:nth-child(1){
+            width: auto;
+            height: 30px;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+        input:nth-child(2){
+            height: 40px;
+            border-radius: 4px;
+        }
+        input{
+            background-color:$theme-field-bg;
+            color:$theme-interact;
+            padding: $padding;
+            font-size: 1rem;
+            border: solid 1px $theme-interact;
+        }
+}
+
+
+.breadCrumb{
+    margin-top: 8px;
+    border-top: solid 1px $theme-gray;
+    border-bottom: solid 1px $theme-gray;
+    display: block;
+    align-content: center;
+    justify-content: center; 
+    color:$theme-interact;
+
+}

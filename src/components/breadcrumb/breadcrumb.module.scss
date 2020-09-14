@@ -1,0 +1,16 @@
+@import '../theme/theme.scss';
+
+.breadCrumb{
+    color: $theme-interact;
+    li{
+        margin-right: 8px;
+        list-style: none;
+        display:inline-block;
+    }
+    a{
+        margin-right: 8px;
+        color: $theme-interact;
+        text-decoration: none;
+        display: inline-block;
+    }
+}

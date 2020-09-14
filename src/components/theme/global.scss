@@ -1,0 +1,11 @@
+@import 'theme.scss';
+
+.mainWrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    background-color: $theme-bg-dark;
+    color:white;
+    width:90%;
+    margin:auto;
+}
