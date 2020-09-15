@@ -1,0 +1,55 @@
+@import '../../components/theme/theme.scss';
+
+.hero{
+    width: 100%;
+    margin:auto;
+    display: grid; 
+    grid-template-columns: 2fr 1fr;
+    height: 50vh;
+    margin-top: 16px;
+
+    article{
+        
+        background-color: $theme-bg;
+    
+        h4{
+            font-size: 2.4rem;
+            padding: 0;
+            margin: 8px;
+        }
+
+        h3{
+            font-size: 3.8rem;
+            padding:0;
+            margin: 8px;
+        }
+
+        p{
+            padding-top: 16px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid white;
+            border-top: 2px solid white;
+            font-size: 2.5rem;
+            margin: 8px;
+        }
+
+        button{
+            border-radius: 24px;
+            border:none;
+            background-color: $theme-interact;
+            color:black;
+            height: 50px;
+            width: 140px;
+            font-size: 1.2rem;
+            margin: 8px;
+        }
+    }
+}
+
+.heroImage{
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.favoriteGridItem{
+}

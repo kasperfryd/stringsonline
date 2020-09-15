@@ -4,7 +4,7 @@ import { AppContext } from "../../context/ContextProvider"
 
 function ProductPage(){
 
-    const {data, setProductID, setProductName, doFetch} = useContext(AppContext);
+    const {data, setProductID, setProductName, doFetch, addToCart} = useContext(AppContext);
     const [avgRating, setAvgRating] = useState([])
 
     const getRating = (id) => {
@@ -14,7 +14,7 @@ function ProductPage(){
     }
 
 
-    console.log(data)
+    //console.log(data)
     //console.log("Rating, ", avgRating)
     return(
 
@@ -33,7 +33,7 @@ function ProductPage(){
                         </article>
                         <div>
                             <p>Pris: {item.price}</p>
-                            <button>Læg i kurv</button>
+                            <button onClick={()=>{addToCart(item.id)}}>Læg i kurv</button>
                             <p>{item.stock}+ på lager</p>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ function ProductPage(){
                             <img className={Style.brandLogo} src={`https://api.mediehuset.net/images/stringsonline/brands/${data.items.subgroup.product.brand.toLowerCase()}.png`} alt={data.items.subgroup.product.name}></img>
                             <p>Pris {data.items.subgroup.price}</p>
                             <input defaultValue="1"></input>
-                            <button>Læg i kurv</button>
+                            <button onClick={()=>{addToCart(data.items.subgroup.id)}}>Læg i kurv</button>
                             <p>{data.items.subgroup.product.stock}+ på lager</p>
                             <p>Rating</p>
                         </div>

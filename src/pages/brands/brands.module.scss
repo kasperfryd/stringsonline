@@ -1,0 +1,54 @@
+.topGrid{
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    padding: 8px;
+
+    .imgWrapper{
+        height: 275px;
+        display: grid;
+        background-color: white;
+        align-items: center;
+        justify-items: center;
+        img{
+            width: 80%;
+            max-height: 260px;
+        }
+    }
+}
+
+.gridContainer{
+    display: grid;
+    gap: 8px;
+}
+
+.gridItem{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    gap: 8px;
+
+    img{
+        width: 100%;
+        height: auto;
+        object-fit:cover;
+        align-self: center;
+    }
+}
+
+.detailContainer{
+    width: 90%;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.brandLogo{
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.topImage{
+    width: 50%;
+    margin:auto;
+    object-fit: cover;
+}

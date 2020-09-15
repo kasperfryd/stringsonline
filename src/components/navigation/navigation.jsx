@@ -7,8 +7,9 @@ import Submenu from './submenu';
 
 function Navigation() {
 
-    const { doFetch, setGroupID, setSubID, setGroupName, setSubgroupName, setProductName } = useContext(AppContext);
+    const { doFetch, setGroupID, setSubID, setGroupName, setSubgroupName, setProductName, setBrandID } = useContext(AppContext);
     const [groups, setGroups] = useState([])
+    const [brands, setBrands] = useState([])
 
     async function getGroups(){
         let url = `https://api.mediehuset.net/stringsonline/`
@@ -16,9 +17,18 @@ function Navigation() {
         setGroups(data)
     }
 
+    async function getBrands(){
+        let url = `https://api.mediehuset.net/stringsonline/brands`
+        let data = await doFetch(url)
+        setBrands(data)
+    }
+
     useEffect(() => {
         getGroups()
+        getBrands()
     }, [])
+
+    //console.log(brands)
 
     // return html
     return (
@@ -45,7 +55,16 @@ function Navigation() {
                         }
                     }
                     )}
-                </ul>
+                    {
+                        <Submenu title={<p className={Style.link}>Brands</p>} child = {
+                        brands && brands.items && brands.items.map((item, i) => {
+                            return (
+                                <Link onClick={() =>  {setBrandID(item.id); setGroupName("Brands"); setSubgroupName(item.title); setProductName("")}} className={Style.link} key={i} to={"/brands/" + item.title.toLowerCase()}>{item.title}</Link>
+                        )}
+                    )}
+                    ></Submenu>
+                    }
+                    </ul>
             </aside>
     )
 }

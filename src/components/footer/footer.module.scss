@@ -1,0 +1,17 @@
+@import '../theme/theme.scss';
+
+.footer{
+    height: 10vh;
+    width: 100%;
+    background-color: $theme-bg;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+
+    img{
+        margin:auto;
+        margin-top: 1%;
+        width: 25%;
+    }
+}

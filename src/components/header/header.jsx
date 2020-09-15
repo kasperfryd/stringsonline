@@ -3,15 +3,13 @@ import Style from './header.module.scss'
 import {Link} from 'react-router-dom'
 import BreadCrumb from '../breadcrumb/breadcrumb'
 import {AppContext} from '../../context/ContextProvider'
+import headerImg from '../../assets/headerbanner.svg'
+import cartIcon from '../../assets/cart-icon.png'
 
 function Header(){
 
-    const {setGroupName, setSubgroupName, setProductName, setSearchRes} = useContext(AppContext);
+    const {setGroupName, setSubgroupName, setProductName, setSearchRes, cartQuantity} = useContext(AppContext);
     const [searchQuery, setSearchQuery] = useState("")
-
-    useEffect(() => {
-        console.log(searchQuery)
-    }, [searchQuery])
 
     async function doSearch(query){
         try {
@@ -31,19 +29,19 @@ function Header(){
             <span></span>
             <p>SALES@STRINGSONLINE.DK</p>
             <p>+45 98 12 22 68</p>
-            <Link to="/kurv"><p>KURV HER</p></Link>
+            <Link onClick={()=>{setGroupName("Kurv"); setSubgroupName(""); setProductName("")}}  to="/kurv"><img src={cartIcon} alt="cart-icon"></img><span className={Style.cartQuantity}>{cartQuantity}</span></Link>
         </div>
 
                 <nav className={Style.navGrid}>
-                    <p>StringsOnline</p>
-                    <Link onClick={()=>{setGroupName(""); setSubgroupName(""); setProductName("")}} to="/forside">Forside</Link>
-                    <Link to="/betingelser" onClick={()=>{setGroupName("Betingelser"); setSubgroupName(""); setProductName("")}} >Salgs- og handelsbetingelser</Link>
-                    <Link to="/logind"><button onClick={() => {setGroupName("Log ind"); setSubgroupName(""); setProductName("")}}>Login</button></Link>
-                </nav>
+                    <img alt={"StringsOnline_Logo"} src={headerImg}></img>
+                    <Link className={Style.link1} onClick={()=>{setGroupName(""); setSubgroupName(""); setProductName("")}} to="/forside">Forside</Link>
+                    <Link className={Style.link2} to="/betingelser" onClick={()=>{setGroupName("Betingelser"); setSubgroupName(""); setProductName("")}} >Salgs- og handelsbetingelser</Link>
+                    <Link className={Style.link3} to="/logind"><button onClick={() => {setGroupName("Log ind"); setSubgroupName(""); setProductName("")}}>Login</button></Link>
                 <form className={Style.searchGrid}>
                     <input type="text" name="query" onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
                     <Link onClick={()=>{doSearch(searchQuery); setGroupName("Søgeresultat"); setSubgroupName(""); setProductName("")}} to="/søgeresultat"><button>Søg</button></Link>
                 </form>
+                </nav>
 
                 <div className={Style.breadCrumb}>
                     <BreadCrumb/>

@@ -3,26 +3,22 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './components/theme/global.scss'
 import Navigation from './components/navigation/navigation'
 import Header from './components/header/header'
-import ProductRoutes from './routes/productroutes'
-import FrontPage from './pages/frontpage/frontpage'
-import LoginPage from './pages/loginpage/loginpage'
-import TermsPage from './pages/termspage/termspage'
-import BasketPage from './pages/basketpage/basketpage'
-import SearchPage from './pages/searchpage/searchpage'
+import Footer from './components/footer/footer';
+import Routes from './routes/routes';
 
 // TODO:
 
-// Frontpage page
-// Basket Component + Page
 // Checkout page
-// Favorites Component
-// Footer component
+// Order completed page
 // OrderHistory page
-// Order complete component
-// Brands page
-// Seachresult page
+// Ratings
+// Cleanup
 
-
+// Cart Page (DONE)
+// Brands page (DONE)
+// Footer component (DONE)
+// Seachresult page (DONE)
+// Frontpage page (DONE)
 // Header component (DONE)
 // Navigation (aside) Component (DONE)
 // Breadcrumb Component (DONE)
@@ -37,24 +33,10 @@ function App() {
       <main className={'mainWrapper'}>
       <Navigation/>
       <Switch>
-        <Route path="/forside">
-          <FrontPage/>
-        </Route>
-        <Route path="/logind">
-          <LoginPage/>
-        </Route>
-        <Route path="/betingelser">
-          <TermsPage/>
-        </Route>
-        <Route path="/kurv">
-          <BasketPage/>
-        </Route>
-        <Route path="/søgeresultat">
-          <SearchPage/>
-        </Route>
-        <ProductRoutes/>      
+        <Routes/>
       </Switch>
       </main>
+      <Footer/>
     </Router>
   );
 }

@@ -8,13 +8,14 @@ const AppContextProvider = ({ children }) => {
 const [loginData, setLoginData] = useState([])
 const [data, setData] = useState([])
 const [searchRes, setSearchRes] = useState([])
+const [brandID, setBrandID] = useState(0)
 
   // useEffect der gemmer logindata fra sessionStorage
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
       setLoginData(JSON.parse(sessionStorage.getItem("token")))
     }
-  }, [setLoginData])
+  }, [])
 
   // Funktion til at lave fetch - sendes med ind i de komponenter der skal fetche
   async function doFetch(url) {
@@ -44,13 +45,16 @@ const [searchRes, setSearchRes] = useState([])
         let url = `https://api.mediehuset.net/stringsonline/groups${!groupName == "" && groupid ? "/" + groupid : ''}${!subGroupName == "" ? '/subgroup' : ''}${!subGroupName == "" && subid ? "/" + subid : ''}${!productName == "" ? '/product' : ''}${!productName == "" && productid ? "/" + productid : ''}`
 
         console.log(url)
-        try {
-            const response = await fetch(url)
-            const data = await response.json()
-            setData(data)
-        }
-        catch (error) {
-            console.log(error)
+
+        if (url !== `https://api.mediehuset.net/stringsonline/groups/subgroup` && url !== `https://api.mediehuset.net/stringsonline/groups/product`){
+          try {
+              const response = await fetch(url)
+              const data = await response.json()
+              setData(data)
+          }
+          catch (error) {
+              console.log(error)
+          }
         }
     }
 
@@ -69,6 +73,63 @@ const [searchRes, setSearchRes] = useState([])
 
         //eslint-disable-next-line
     }, [groupID, subID, productID, groupName, subGroupName, productName])
+
+
+
+    // Cart functions
+    const [cart, setCart] = useState([])
+    const [cartQuantity, setCartQuantity] = useState(0)
+
+    const getCart = async () => {
+        let options = {
+            headers: {
+                'Authorization': `Bearer ${loginData.access_token}`
+            }
+        }
+        try {
+            const url = `https://api.mediehuset.net/stringsonline/cart`
+            const response = await fetch(url, options);
+            const data = await response.json();
+            setCart(data);
+            setCartQuantity(data.cartlines.length)
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+      getCart()
+    }, [])
+
+    const addToCart = async (selectedID) => {
+
+      let formData = new FormData()
+
+      formData.append("product_id", selectedID)
+      formData.append("quantity", 1)
+
+      let options = {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Authorization': `Bearer ${loginData.access_token}`
+        }
+    }
+    try {
+        const url = `https://api.mediehuset.net/stringsonline/cart`
+        const response = await fetch(url, options);
+        const data = await response.json();
+        console.log(data)
+        getCart()
+    }
+    catch (error) {
+        console.log(error)
+      }
+    }
+
+
+
 
 // Return AppContext.Provider with value={ALL THE VALUES}
     return (
@@ -90,6 +151,12 @@ const [searchRes, setSearchRes] = useState([])
           setProductName,
           searchRes,
           setSearchRes,
+          setBrandID,
+          brandID,
+          cart,
+          getCart,
+          addToCart,
+          cartQuantity,
           data
           }}>
             {children}
