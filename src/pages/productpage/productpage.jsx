@@ -14,7 +14,7 @@ function ProductPage(){
     }
 
 
-    //console.log(data)
+    console.log(data)
     //console.log("Rating, ", avgRating)
     return(
 
@@ -32,7 +32,7 @@ function ProductPage(){
                             <p>{item.description_short}</p>
                         </article>
                         <div>
-                            <p>Pris: {item.price}</p>
+                            <div>{item.offerprice === "0.00" ?<p>Pris: {item.price}</p> : <p className={Style.offer}>Tilbud: {item.offerprice}</p>}</div>
                             <button onClick={()=>{addToCart(item.id)}}>Læg i kurv</button>
                             <p>{item.stock}+ på lager</p>
                         </div>
@@ -50,7 +50,7 @@ function ProductPage(){
                         </article>
                         <div className={Style.detailPriceContainer}>
                             <img className={Style.brandLogo} src={`https://api.mediehuset.net/images/stringsonline/brands/${data.items.subgroup.product.brand.toLowerCase()}.png`} alt={data.items.subgroup.product.name}></img>
-                            <p>Pris {data.items.subgroup.price}</p>
+                            <div>{data.items.subgroup.product.offerprice === "0.00" ? <p>Pris {data.items.subgroup.product.price}</p> : <p className={Style.offer}>Tilbud: {data.items.subgroup.product.offerprice}</p>}</div>
                             <input defaultValue="1"></input>
                             <button onClick={()=>{addToCart(data.items.subgroup.id)}}>Læg i kurv</button>
                             <p>{data.items.subgroup.product.stock}+ på lager</p>

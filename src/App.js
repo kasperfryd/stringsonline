@@ -8,13 +8,14 @@ import Routes from './routes/routes';
 
 // TODO:
 
-// Checkout page
-// Order completed page
 // OrderHistory page
 // Ratings
 // Sortering
 // Cleanup
+// Offerprice
 
+// Order completed page
+// Checkout page
 // Cart Page (DONE)
 // Brands page (DONE)
 // Footer component (DONE)

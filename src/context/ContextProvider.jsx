@@ -168,6 +168,7 @@ const [brandID, setBrandID] = useState(0)
           setCart,
           addToCart,
           cartQuantity,
+          setCartQuantity,
           data
           }}>
             {children}

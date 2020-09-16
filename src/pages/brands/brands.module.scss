@@ -1,3 +1,5 @@
+@import '../../components/theme/theme.scss';
+
 .topGrid{
     display: grid;
     grid-template-columns: 2fr 6fr;
@@ -32,6 +34,10 @@
         object-fit:cover;
         align-self: center;
     }
+}
+
+.offer{
+    color: $theme-interact;
 }
 
 .detailContainer{

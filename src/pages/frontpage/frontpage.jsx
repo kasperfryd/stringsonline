@@ -54,7 +54,7 @@ function FrontPage(){
                             <h2>{item.brand + item.name}</h2>
                             <p>{item.description_short}</p>
                             <div>
-                                {item.price}
+                            <div>{item.offerprice === "0.00" ?<p>Pris: {item.price}</p> : <p className={Style.offer}>Tilbud: {item.offerprice}</p>}</div>
                                 <button onClick={()=>{addToCart(item.id)}}>Læg i kurv</button>
                             </div>
                         </section>

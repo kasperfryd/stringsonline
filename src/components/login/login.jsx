@@ -13,6 +13,8 @@ function Login() {
 
     const { register, handleSubmit, errors } = useForm();
 
+    console.log(loginData)
+
     // POST request with formdata from login input fields
     const sendLoginRequest = (data, e) => {
         e.target.reset()

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 function BasketPage() {
-    const { loginData, cart, getCart, setCart, setProductName } = useContext(AppContext);
+    const { loginData, cart, getCart, setCart, setProductName, setCartQuantity } = useContext(AppContext);
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
@@ -20,6 +20,9 @@ function BasketPage() {
     useEffect(() => {
         if (cart.cartlines){
             calculateTotal()
+            if (cart.cartlines.length <= 0){
+                setCartQuantity(0)
+            }
         }
     }, [cart,getCart])
 
@@ -126,7 +129,7 @@ function BasketPage() {
                     <p>{item.quantity}</p>
                     <button onClick={() =>{updateCart(item.product_id, (parseInt(item.quantity)-1))}}>-</button>
                 </div>
-                <p>DKK: {parseInt(item.price) * item.quantity}</p>
+                <div>{item.offerprice === "0.00" ?<p>Pris: {parseInt(item.price * item.quantity)}</p> : <p className={Style.offer}>Pris: {parseInt(item.offerprice * item.quantity)}</p>}</div>
                 <button onClick={()=>{removeFromCart(item.id)}}>X</button>
             </li>
             )
@@ -142,7 +145,7 @@ function BasketPage() {
             : null}
             {!loginData.access_token ? <p>Log ind for at se din kurv</p> : null}
         </div>
-        <Link to="/kassen"><button onClick={()=>{setProductName("Kassen");}}>Til kassen</button></Link>
+        {cart.cartlines ? <Link to="/kassen"><button onClick={()=>{setProductName("Kassen");}}>Til kassen</button></Link> : null}
         </section>
     )
 }

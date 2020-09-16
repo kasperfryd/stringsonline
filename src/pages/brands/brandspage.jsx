@@ -44,7 +44,7 @@ function BrandsPage() {
                                     <p>{item.description_short}</p>
                                 </article>
                                 <div>
-                                    <p>Pris: {item.price}</p>
+                                <div>{item.offerprice === "0.00" ?<p>Pris: {item.price}</p> : <p className={Style.offer}>Tilbud: {item.offerprice}</p>}</div>
                                     <button onClick={()=>{addToCart(item.id)}}>Læg i kurv</button>
                                     <p>{item.stock}+ på lager</p>
                                 </div>

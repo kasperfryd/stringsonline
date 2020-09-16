@@ -1,3 +1,4 @@
+@import '../../components/theme/theme.scss';
 .gridContainer{
     display: grid;
     gap: 8px;
@@ -33,4 +34,8 @@
     width: 50%;
     margin:auto;
     object-fit: cover;
+}
+
+.offer{
+    color:$theme-interact;
 }
