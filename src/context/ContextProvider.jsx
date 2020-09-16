@@ -169,7 +169,8 @@ const [brandID, setBrandID] = useState(0)
           addToCart,
           cartQuantity,
           setCartQuantity,
-          data
+          data,
+          setData,
           }}>
             {children}
         </AppContext.Provider>

@@ -45,6 +45,7 @@ function Header(){
 
                 <div className={Style.breadCrumb}>
                     <BreadCrumb/>
+                    {loginData.access_token ? <Link onClick={()=>{setGroupName("Ordrehistorik")}} className={Style.orderHistory} to="/ordrehistorik">Ordrehistorik</Link> : null}
                 </div>
         </header>
     )

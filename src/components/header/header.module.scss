@@ -104,5 +104,12 @@
     align-content: center;
     justify-content: center; 
     color:$theme-interact;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    align-items: center;
 
+    .orderHistory{
+        display:inline-block;
+        color:$theme-interact;
+    }
 }
