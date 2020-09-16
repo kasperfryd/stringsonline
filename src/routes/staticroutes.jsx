@@ -5,6 +5,7 @@ import LoginPage from '../pages/loginpage/loginpage'
 import TermsPage from '../pages/termspage/termspage'
 import CartPage from '../pages/cartpage/cartpage'
 import SearchPage from '../pages/searchpage/searchpage'
+import CheckoutPage from '../pages/checkoutpage/checkoutpage'
 
 function StaticRoutes() {
 
@@ -24,6 +25,10 @@ function StaticRoutes() {
 
             <Route path="/kurv">
                 <CartPage />
+            </Route>
+
+            <Route path="/kassen">
+                <CheckoutPage/>
             </Route>
 
             <Route path="/søgeresultat">

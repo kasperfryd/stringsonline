@@ -91,7 +91,6 @@ const [brandID, setBrandID] = useState(0)
             const response = await fetch(url, options);
             const data = await response.json();
             setCart(data);
-            setCartQuantity(data.cartlines.length)
         }
         catch (error) {
             console.log(error)
@@ -99,8 +98,19 @@ const [brandID, setBrandID] = useState(0)
     }
 
     useEffect(() => {
-      getCart()
-    }, [])
+      if (cart.cartlines){
+        setCartQuantity(cart.cartlines.length)
+      }
+      if (!loginData.access_token){
+        setCartQuantity(0)
+      }
+    }, [cart, loginData])
+
+    useEffect(() => {
+      if (loginData.access_token){
+        getCart()
+      }
+    }, [loginData])
 
     const addToCart = async (selectedID) => {
 
@@ -155,6 +165,7 @@ const [brandID, setBrandID] = useState(0)
           brandID,
           cart,
           getCart,
+          setCart,
           addToCart,
           cartQuantity,
           data

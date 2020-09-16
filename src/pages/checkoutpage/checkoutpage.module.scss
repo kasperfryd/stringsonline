@@ -1,0 +1,104 @@
+@import '../../components/theme/theme.scss';
+
+.formGrid{   
+    width: 85%;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: $theme-interact;
+    margin-bottom: 5%;
+
+    h2{
+        color:white;
+    }
+
+    div{
+        width: 370px;
+    }
+
+    input{
+        border-radius: 4px;
+        margin: 8px;
+        width: 340px;
+        height: 50px;
+        background-color: $theme-field-bg;
+        border: solid 1px $theme-gray;
+        color:$theme-interact;
+        padding: 4px;
+        font-size: 1rem;
+    }
+
+    input::placeholder{
+        color:$theme-interact;
+        padding-left: 8px;
+    }
+
+    .addressGrid{
+        display: grid;
+        grid-template-columns: 1fr;
+        height: fit-content;
+
+        div{
+            input:nth-child(1){
+                width: 130px;
+                display:inline-grid;
+            }
+            input:nth-child(2){
+                width: 184px;
+                display:inline-grid;
+            }
+        }
+    }
+    .phoneGrid{
+        align-items: baseline;
+        display: grid;
+        grid-template-columns: 1fr;
+        height: fit-content;
+    }
+    .cardGrid{
+        display: grid;
+        grid-template-columns: 1fr;
+        height: fit-content;
+
+        input{
+            background-color: $theme-bg-dark;
+        }
+
+        input:nth-child(3){
+            width: 120px;
+        }
+
+        input:nth-child(4){
+            width: 120px;
+        }
+
+        div:nth-child(2){
+            margin:8px;
+            background-color: $theme-field-bg;
+            border-radius: 4px;
+            border: solid 1px $theme-interact;
+        }
+
+        div:nth-child(3){
+            margin:8px;
+            background-color: $theme-field-bg;
+            border-radius: 4px;
+            border: solid 1px $theme-interact;
+
+        }
+    }
+
+    .radioButton{
+        width: 30px;
+        height: 30px;
+    }
+
+    .payButton{
+        background-color: $theme-interact;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color:black;
+        width: 375px;
+        height: 60px;
+    }
+}

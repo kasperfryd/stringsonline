@@ -7,7 +7,7 @@ function Login() {
 
     // set states needed by component
     const [message, setMessage] = useState("Indtast login oplysninger")
-    const { loginData, setLoginData } = useContext(AppContext);
+    const { loginData, setLoginData, getCart } = useContext(AppContext);
 
     const onSubmit = (data, e) => sendLoginRequest(data, e);
 

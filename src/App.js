@@ -12,6 +12,7 @@ import Routes from './routes/routes';
 // Order completed page
 // OrderHistory page
 // Ratings
+// Sortering
 // Cleanup
 
 // Cart Page (DONE)

@@ -6,7 +6,7 @@ import heroImg from '../../assets/hero-banner.png';
 
 function FrontPage(){
 
-    const {data, setProductID, setProductName, doFetch, setGroupID, setGroupName, setSubID, setSubgroupName, addToCart} = useContext(AppContext);
+    const {data, setProductID, setProductName, doFetch, setGroupID, setGroupName, setSubID, setSubgroupName, addToCart, getCart} = useContext(AppContext);
     const [heroData, setHeroData] = useState([])
     const [allData, setAllData] = useState([])
 

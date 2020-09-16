@@ -1,17 +1,21 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AppContext } from "../../context/ContextProvider"
 import Style from './cartpage.module.scss'
+import {Link} from 'react-router-dom'
+
 
 function BasketPage() {
-    const { loginData, cart, getCart, } = useContext(AppContext);
+    const { loginData, cart, getCart, setCart, setProductName } = useContext(AppContext);
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
         if (loginData.access_token) {
             getCart()
         }
+        if (!loginData.access_token){
+            setCart([])
+        }
     }, [loginData])
-
 
     useEffect(() => {
         if (cart.cartlines){
@@ -107,7 +111,7 @@ function BasketPage() {
       }
 
     return (
-        <div>
+        <section>
             <h2>Din kurv</h2>
             {cart.status === false ? <p>Ingen produkter i kurven</p> : null}
             <ul>
@@ -127,10 +131,19 @@ function BasketPage() {
             </li>
             )
         })}
-        <p>Total price: {totalPrice}</p>
         </ul>
-        <button onClick={()=>{clearCart()}}>Fjern alt fra kurven</button>
+        <div className={Style.totalGrid}>
+            {cart.cartlines ? 
+            <>
+            <p>Beløb</p>
+            <div>DKK {totalPrice}<p>Prisen er inkl. moms</p></div> 
+            <button onClick={()=>{clearCart()}}>Fjern alt fra kurven</button>
+            </>
+            : null}
+            {!loginData.access_token ? <p>Log ind for at se din kurv</p> : null}
         </div>
+        <Link to="/kassen"><button onClick={()=>{setProductName("Kassen");}}>Til kassen</button></Link>
+        </section>
     )
 }
 
