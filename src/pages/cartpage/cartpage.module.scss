@@ -1,5 +1,169 @@
+@import '../../components/theme/theme.scss';
+
 .cartline{
+    margin: 8px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr 1fr 0.4fr;
     list-style-type: none;
+    gap: 8px;
+    border: solid 1px $theme-gray;
+    align-items: center;
+    img{
+        width: 200px;
+        height: 200px;
+        background-color: white;
+        object-fit: contain;
+    }
+
+    p:nth-child(2){
+        font-size: 1.4rem;
+        margin-left: 2%;
+        font-weight: 600;
+    }
+    p:nth-child(3){
+        border: solid 1p $theme-gray;
+    }
+
+    .delete{
+        width: 50px;
+        height: 50px;
+        background-color: $theme-cta;
+        border:none;
+        border-radius: 4px;
+    }
+    .delete:focus{
+        outline:none;
+    }
+    .delete:hover{
+        background-color: darken($theme-cta, $amount: 10)
+    }
+    .delete:active{
+        outline:none;
+        background-color: darken($theme-cta, $amount: 30)
+    }
+
+    div{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        p:nth-child(1){
+            font-size: 1.2rem;
+            margin-right:16px;
+        }
+        p:nth-child(3){
+            justify-self: center;
+            align-self: center;
+            font-size: 1.2rem;
+            text-align: center;
+            height: 50px;
+            width:50px;
+            line-height: 2.5;
+            background-color:$theme-interact;
+            border:none;
+            border-left:solid 1px white;
+            border-right:solid 1px white;
+            color:$theme-bg;
+        }
+        .quant{
+            color:$theme-bg;
+            font-size: 1.5rem;
+            height:50px;
+            width:50px;
+            display: inline-block;
+            background-color:$theme-interact;
+            border:none;
+            transition: background-color, 0.4s ease;
+        }
+        .quant:hover{
+            background-color: darken($theme-interact, $amount: 10)
+        }
+        .quant:active{
+            outline:none;
+            background-color: darken($theme-interact, $amount: 30)
+        }
+        .quant:focus{
+            outline:none;
+        }
+        .quant:nth-child(2){
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .quant:nth-child(4){
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+    }
+}
+.offer{
+    color:$theme-interact;
+    padding: 16px;
+    border: solid 1px #afafaf;
+    margin-right: 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.price{
+    padding: 16px;
+    border: solid 1px #afafaf;
+    margin-right: 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.totalGrid{
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr 0.3fr;
+    width: 30%;
+    position: relative;
+    top: 0;
+    left: 70%;
+    align-items: baseline;
+
+    p:nth-child(1){
+        font-weight: 600;
+        font-size: 1.6rem;
+    }
+    button{
+        width: 60px;
+        height: 60px;
+        border:none;
+        background-color:$theme-cta;
+        color:white;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        margin-right:8px;
+    }
+    button:focus{
+        outline:none;
+    }
+    button:hover{
+        background-color: darken($theme-cta, $amount: 10)
+    }
+    button:active{
+        outline:none;
+        background-color: darken($theme-cta, $amount: 30)
+    }
+
+}
+
+.toCart{
+    width: 250px;
+    height: 70px;
+    font-size: 1.5rem;
+    background-color: $theme-interact;
+    outline:none;
+    border:none;
+    border-radius: 8px;
+    float:right;
+    margin-top:8px;
+    margin-bottom:5%;
 }

@@ -50,11 +50,19 @@
         transition: all 0.4s ease;
         outline: none;
     }
+
     .loginbtn{
-        background-color: $alert-green;
+        background-color: $theme-interact;
     }
     .loginbtn:hover{
-        background-color: $alert-green-dark;
+        background-color: darken($theme-interact, $amount: 10)
+    }
+    .loginbtn:active{
+        outline:none;
+        background-color: darken($theme-interact, $amount: 30)
+    }
+    .loginbtn:focus{
+        outline:none;
     }
     .logoutbtn{
         background-color: $alert-red;

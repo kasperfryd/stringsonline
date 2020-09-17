@@ -1,59 +1,188 @@
 @import '../../components/theme/theme.scss';
 
-.hero{
+.wrapper {
+    width: 95%;
+    margin-left: 5%;
+}
+
+.hero {
     width: 100%;
-    margin:auto;
-    display: grid; 
-    grid-template-columns: 2fr 1fr;
-    height: 50vh;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    height: 55vh;
     margin-top: 16px;
 
-    article{
-        
+    article {
+        height: 55vh;
         background-color: $theme-bg;
-    
-        h4{
+
+        h4 {
             font-size: 2.4rem;
             padding: 0;
             margin: 8px;
+            font-weight: 500;
+            margin-left: 22px;
+            display: inline-block;
         }
 
-        h3{
+        h3 {
+            display:inline-block;
             font-size: 3.8rem;
-            padding:0;
+            padding: 0;
             margin: 8px;
+            font-weight: 300;
+            margin-left: 22px;
+
         }
 
-        p{
+        p {
             padding-top: 16px;
             padding-bottom: 16px;
-            border-bottom: 2px solid white;
-            border-top: 2px solid white;
+            border-bottom: 1px solid white;
+            border-top: 1px solid white;
             font-size: 2.5rem;
             margin: 8px;
+            font-weight: 700;
+            margin-left: 22px;
+
         }
 
-        button{
+        button {
             border-radius: 24px;
-            border:none;
+            border: none;
             background-color: $theme-interact;
-            color:black;
+            color: black;
             height: 50px;
             width: 140px;
             font-size: 1.2rem;
             margin: 8px;
+            margin-left:22px;
+        }
+        button:hover{
+            background-color: darken($theme-interact, $amount: 10)
+        }
+        button:active{
+            outline:none;
+            background-color: darken($theme-interact, $amount: 30)
+        }
+        button:focus{
+            outline:none;
         }
     }
 }
 
-.heroImage{
-    background-repeat: no-repeat;
-    background-size: 100%;
+.favoritText{
+    padding:0;
+    margin:22px 0 8px 0;
+    font-size: 3rem;
+    font-weight: 200;
+    color: $theme-gray;
+    b{
+        font-weight: 400;
+    }
 }
 
-.offer{
+.heroImage {
+    object-fit: cover;
+    width: 100%;
+    height: 55vh;
+}
+
+.offer {
     color: $theme-interact;
 }
 
-.favoriteGridItem{
+.favoriteGrid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.favoriteGridItem {
+    border: solid 1px $theme-gray;
+    display: grid;
+    grid-template-columns: 0.9fr 1fr;
+    height:500px;
+    width: 100%;
+
+    h2{
+        font-size: 1.7rem;
+        min-width: 300px;
+        height: 100px;
+        padding: 8px;
+    }
+    p{
+        font-size: 1.1rem;
+        font-weight: 300;
+        color:$theme-gray;
+        padding: 8px;
+    }
+    section{
+        width: 100%;
+        min-width: 300px;
+        max-width: 500px;
+        display:grid;
+        grid-template-rows: 0.3fr 1fr 0.5fr;
+    }
+    div{
+        width: 275px;
+        img{
+            transform:rotateZ(-90deg) translateY(-112.5px) translateX(-112.5px);
+            width: 500px;
+            height: 275px;
+            object-fit: contain;
+            background-color: white;
+        }
+    }
+
+    .gridItemPrice{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-content: flex-start;
+        align-items: center;
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: #afafaf;
+        margin:0;
+        padding:0;
+        position: relative;
+        margin-left:8px;
+
+        p{
+            border-left: solid 1px $theme-gray;
+            border-top: solid 1px $theme-gray;
+            border-bottom: solid 1px $theme-gray;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+            padding:14px;
+        }
+        button{
+            width: 100px;
+            border:none;
+            padding-top:16px;
+            padding-bottom: 16px;
+            background-color:$theme-cta;
+            color:white;
+            font-size: 1.1rem;
+            border-top: solid 2px #D10060;
+            border-bottom: solid 2px #D10061;
+            border-right: solid 2px #D10061;
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+            transition: background-color, 0.4s ease;
+        }
+        button:hover{
+            background-color: darken($theme-cta, $amount: 10)
+        }
+        button:active{
+            outline:none;
+            background-color: darken($theme-cta, $amount: 30)
+        }
+        button:focus{
+            outline:none;
+        }
+    }
 }

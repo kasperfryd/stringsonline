@@ -12,5 +12,12 @@
         color: $theme-interact;
         text-decoration: none;
         display: inline-block;
+        transition: color, 0.4s ease;
+    }
+    a:hover{
+        color: darken($theme-interact, $amount: 10)
+    }
+    a:active{
+        color: darken($theme-interact, $amount: 30)
     }
 }

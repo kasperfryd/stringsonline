@@ -1,11 +1,11 @@
 @import 'theme.scss';
-
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap');
 .mainWrapper{
-    width: 100%;
+    font-family: 'Titillium Web', sans-serif;
+    width: 80%;
     display: grid;
     grid-template-columns: 0.2fr 1fr;
     background-color: $theme-bg-dark;
     color:white;
-    width:90%;
     margin:auto;
 }

@@ -1,28 +1,23 @@
 import React, {useContext, useState} from 'react'
 import {AppContext} from "../../context/ContextProvider"
 import Style from './searchpage.module.scss'
+import ReactStars from 'react-stars'
 
 function SearchPage(){
     
-    const {searchRes, setProductID, setProductName, doFetch, data, productName, addToCart} = useContext(AppContext)
+    const {searchRes, productID, setProductName, doFetch, data, productName, addToCart, loginData} = useContext(AppContext)
     
     const [avgRating, setAvgRating] = useState([])
     const [selected, setSelected] = useState([])
     const [sorted, setSorted] = useState([])
     const [sortedStatus, setSortedStatus] = useState(false)
-
-    const getRating = async (id) => {
-        let url=`https://api.mediehuset.net/stringsonline/ratings/average/${id}`
-        let res = await doFetch(url)
-        setAvgRating(res)
-    }
+    const [amount, setAmount] = useState(1)
 
     const getProductByID = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/products/${id}`
         let res = await doFetch(url)
         setSelected(res)
     }
-
 
     const sortArray = (type, array) => {
         const types = {
@@ -37,98 +32,154 @@ function SearchPage(){
         setSorted(sorted);
       };
 
+    const getRating = async (id) => {
+        let url=`https://api.mediehuset.net/stringsonline/ratings/average/${id}`
+        let res = await doFetch(url)
+        setAvgRating(res)
+    }
 
+    const hasUserRated = async(id) => {
+        let options = {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${loginData.access_token}`
+            }
+        }
+        try {
+            let url = `https://api.mediehuset.net/stringsonline/ratings/${id}`
+            const response = await fetch(url, options);
+            const data = await response.json();
+            console.log(data)
+            if (data.status === false){
+                return false
+            }
+            else if (data.status === true){
+                return true
+            }
+        }
+        catch (error) {
+            console.log(error)
+          }
+    }
 
-    console.log(selected)
-    //console.log(searchRes)
+    const sendRating = async(rating, id) => {
+
+        console.log("rating er ", rating)
+        console.log("product id er", productID)
+        
+        const formData = new URLSearchParams();
+        formData.append("product_id", parseInt(id))
+        formData.append("num_stars", parseInt(rating))
+  
+        let options = {
+          method: "POST",
+          body: formData,
+          headers: {
+              'Authorization': `Bearer ${loginData.access_token}`
+          }
+      }
+        try {
+            let url = `https://api.mediehuset.net/stringsonline/ratings`
+            const response = await fetch(url, options);
+            const data = await response.json();
+            console.log(data)
+        }
+        catch (error) {
+            console.log(error)
+          }
+    }
+
+    const ratingChanged = async (newRating) => {
+        console.log(newRating)
+        if (loginData.access_token){
+            let status = await hasUserRated(selected.item.id)
+            
+            if (status === false){
+                await sendRating(newRating, selected.item.id)
+                await getRating(selected.item.id)
+                window.alert(`Vi har modtaget din bedømmelse af produktet - Du har givet produktet ${newRating} stjerner`)
+            }
+            if (status === true){
+                await getRating(selected.item.id)
+                window.alert("Du har allerede bedømt dette produkt")
+            }
+        }
+        else {
+            window.alert("Du skal være logget ind for at bedømme et produkt")
+        }
+    }
+    console.log("Selected", selected)
+    console.log("searchRes", searchRes)
+    console.log("Sorted", sorted)
+
     return (
-        <section>
-        <h2>Søgeresultater</h2>
-        {!selected.item && searchRes.items && <select onChange={(e)=>{sortArray(e.target.value, searchRes && searchRes.items)}}>
+        <section className={Style.productWrapper}>
+        {searchRes.items && productName === "" &&
+                <select className={Style.sortBar} onChange={(e)=>{sortArray(e.target.value, searchRes && searchRes.items)}}>
                     <option value={null}>Vælg</option>
                     <option value="price">Pris</option>
                     <option value="name">Navn</option>
                     <option value="stock">På lager</option>
                 </select>
         }
-        {sortedStatus === false && productName=== "" && searchRes && searchRes.items && searchRes.items.map((item, i) => {
+        <section className={Style.gridContainer}>
+        {sortedStatus === false && productName === "" && searchRes && searchRes.items && searchRes.items.map((item, i) => {
             return (
-                <div className={Style.gridItem} key={i}>
+                <section className={Style.gridItem} key={i}>
                     <img onClick={() => {getProductByID(item.id); setProductName(item.name); getRating(item.id)}} src={item.image_fullpath} alt={item.name}></img>
                     <article>
                         <h3>{item.name}</h3>
                         <p>{item.description_short}</p>
                     </article>
                     <div>
-                        <p>Pris: {item.price}</p>
-                        <button onClick={()=>{addToCart(item.id)}}>Læg i kurv</button>
+                    {item.offerprice === "0.00" ?<p className={Style.price}>Pris: DKK {item.price}</p> : <p className={Style.offer}>Tilbud: DKK {item.offerprice}</p>}
+                        <button onClick={()=>{addToCart(item.id, amount)}}>Læg i kurv</button>
                         <p>{item.stock}+ på lager</p>
                     </div>
-                </div>
+                </section>
                 )
         })}
-         {sortedStatus === true && !selected.item && sorted && sorted.map((item, i)=>{
+         {sortedStatus === true && sorted && sorted.map((item, i)=>{
                 return (
-                    <div className={Style.gridItem} key={i}>
+                    <section className={Style.gridItem} key={i}>
                         <img onClick={() => {setSortedStatus(false); getProductByID(item.id); setProductName(item.name); getRating(item.id)}} src={item.image_fullpath} alt={item.name}></img>
                         <article>
-                            <h2>{item.brand}</h2>
                             <h3>{item.name}</h3>
                             <p>{item.description_short}</p>
                         </article>
                         <div>
-                            <div>{item.offerprice === "0.00" ?<p>Pris: {item.price}</p> : <p className={Style.offer}>Tilbud: {item.offerprice}</p>}</div>
-                            <button onClick={()=>{addToCart(item.id)}}>Læg i kurv</button>
+                        {item.offerprice === "0.00" ?<p className={Style.price}>Pris: DKK {item.price}</p> : <p className={Style.offer}>Tilbud: DKK {item.offerprice}</p>}
+                            <button onClick={()=>{addToCart(item.id, amount)}}>Læg i kurv</button>
                             <p>{item.stock}+ på lager</p>
                         </div>
-                    </div>
+                    </section>
                     )
                 })}
 
-        {!productName == "" && selected && selected.item && 
-            
-            <>
-            <img className={Style.topImage} src={selected.item.image.fullpath} alt={selected.item.title}></img>
-            <div className={Style.detailContainer}>
-                <article>
-                    <h3>{selected.item.name}</h3>
-                    <p>{selected.item.description_long}</p>
-                </article>
-                <div className={Style.detailPriceContainer}>
-                    <img className={Style.brandLogo} src={`https://api.mediehuset.net/images/stringsonline/brands/${selected.item.brand.toLowerCase()}.png`} alt={selected.item.name}></img>
-                    <p>Pris {selected.item.price}</p>
-                    <input defaultValue="1"></input>
-                    <button onClick={()=>{addToCart(selected.item.id)}}>Læg i kurv</button>
-                    <p>{selected.item.stock}+ på lager</p>
-                    <p>Rating</p>
-                </div>
-            </div>
-            </>
+        {!productName == "" && sortedStatus === false && selected && selected.item && 
+         <section className={Style.detailContainer}>
+         <img className={Style.topImage} src={selected.item.image.fullpath} alt={selected.item.title}></img>
+             <article>
+                 <h2>{selected.item.name}</h2>
+                 <p>{selected.item.description_long}</p>
+             </article>
+             <div className={Style.detailPriceContainer}>
+                 <img className={Style.brandLogo} src={selected.item.brand_image} alt={selected.item.name}></img>
+                 {selected.item.offerprice === "0.00" ? <p className={Style.price}>Pris DKK {selected.item.price}</p> : <p className={Style.offer}>Tilbud: DKK {selected.item.offerprice}</p>}
+                <span className={Style.priceContainer}>
+                     <input defaultValue="1" onChange={(e)=>setAmount(e.target.value)}></input>
+                     <button onClick={()=>{addToCart(selected.item.id, amount)}}>Læg i kurv</button>
+                 </span> 
+                 <span className={Style.moveRight}>
+                     <p>{selected.item.stock}+ på lager</p>
+                     <ReactStars count={5} half={false} value={parseInt(avgRating.average_num_stars)} onChange={ratingChanged} size={24} color2={'#ffd700'} />
+                 </span>
+             </div>
+         </section>
         }
         </section>
+    </section>
     )
 }
-
-
-/*     <section>
-            <h3>{data.items.title}</h3>
-            <h5>{data.items.subgroup && data.items.subgroup.title}</h5>
-            <section className={Style.gridContainer}>
-            {data.items.subgroup && data.items.subgroup.products && data.items.subgroup.products.map((item, i)=>{
-                return (
-                    <div className={Style.gridItem} key={i}>
-                        <img onClick={() => {setProductID(item.id); setProductName(item.name); getRating(item.id)}} src={item.image_fullpath} alt={item.name}></img>
-                        <article>
-                            <h3>{item.name}</h3>
-                            <p>{item.description_short}</p>
-                        </article>
-                        <div>
-                            <p>Pris: {item.price}</p>
-                            <button>Læg i kurv</button>
-                            <p>{item.stock}+ på lager</p>
-                        </div>
-                    </div>
-                    )
-                })} */
 
 export default SearchPage

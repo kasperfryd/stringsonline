@@ -99,7 +99,10 @@ const [brandID, setBrandID] = useState(0)
 
     useEffect(() => {
       if (cart.cartlines){
-        setCartQuantity(cart.cartlines.length)
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        const quantArr = cart.cartlines.map((i) => {return parseInt(i.quantity)})
+        let total = quantArr.reduce(reducer)
+        setCartQuantity(total)
       }
       if (!loginData.access_token){
         setCartQuantity(0)
@@ -112,12 +115,12 @@ const [brandID, setBrandID] = useState(0)
       }
     }, [loginData])
 
-    const addToCart = async (selectedID) => {
+    const addToCart = async (selectedID, amount) => {
 
       let formData = new FormData()
 
       formData.append("product_id", selectedID)
-      formData.append("quantity", 1)
+      formData.append("quantity", amount)
 
       let options = {
         method: "POST",

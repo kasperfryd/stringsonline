@@ -8,10 +8,12 @@ import Routes from './routes/routes';
 
 // TODO:
 
-// Ratings
+
 // Cleanup
 // styling
 
+
+// Ratings
 // Content on termspage
 // Sortering
 // OrderHistory page

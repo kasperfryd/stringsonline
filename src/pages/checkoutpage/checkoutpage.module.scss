@@ -88,6 +88,25 @@
         }
     }
 
+    .checkArea{
+        display:grid;
+        grid-template-columns: 0.5fr 2fr;
+        gap:8px;
+        align-items: center;
+        justify-content: center;
+        .checkbox{
+            height: 30px;
+            width: 30px;
+            background-color:$theme-field-bg;
+            border: solid 1px $theme-interact;
+            border-radius: 8px;
+        }
+        
+        .checkboxLabel{
+            display:inline-block;
+        }
+    }
+
     .radioButton{
         width: 30px;
         height: 30px;

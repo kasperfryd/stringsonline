@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AppContext } from "../../context/ContextProvider"
 import Style from './cartpage.module.scss'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 function BasketPage() {
@@ -12,76 +12,72 @@ function BasketPage() {
         if (loginData.access_token) {
             getCart()
         }
-        if (!loginData.access_token){
+        if (!loginData.access_token) {
             setCart([])
         }
     }, [loginData])
 
     useEffect(() => {
-        if (cart.cartlines){
+        if (cart.cartlines) {
             calculateTotal()
-            if (cart.cartlines.length <= 0){
-                setCartQuantity(0)
-            }
         }
-    }, [cart,getCart])
+    }, [cart, getCart])
 
-    console.log(cart)
+    //console.log(cart)
 
     const removeFromCart = async (selectedID) => {
 
         let formData = new FormData()
         formData.append("product_id", selectedID)
-  
+
         let options = {
-          method: "DELETE",
-          body: formData,
-          headers: {
-              'Authorization': `Bearer ${loginData.access_token}`
-          }
-      }
-      try {
-          const url = `https://api.mediehuset.net/stringsonline/cart/${selectedID}`
-          const response = await fetch(url, options);
-          const data = await response.json();
-          console.log(data)
-          getCart()
-      }
-      catch (error) {
-          console.log(error)
+            method: "DELETE",
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${loginData.access_token}`
+            }
         }
-      }
-  
-      const clearCart = async () => {
-  
+        try {
+            const url = `https://api.mediehuset.net/stringsonline/cart/${selectedID}`
+            const response = await fetch(url, options);
+            const data = await response.json();
+            console.log(data)
+            getCart()
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    const clearCart = async () => {
+
         let options = {
-          method: "DELETE",
-          headers: {
-              'Authorization': `Bearer ${loginData.access_token}`
-          }
-      }
-      try {
-          const url = `https://api.mediehuset.net/stringsonline/cart`
-          const response = await fetch(url, options);
-          const data = await response.json();
-          console.log(data)
-          getCart()
-      }
-      catch (error) {
-          console.log(error)
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${loginData.access_token}`
+            }
         }
-      }
-  
-      const updateCart = async (selectedID, selectedQuantity) => {
-  
-        if (selectedQuantity > 0){
-            console.log(selectedID)
-            console.log(selectedQuantity)
+        try {
+            const url = `https://api.mediehuset.net/stringsonline/cart`
+            const response = await fetch(url, options);
+            const data = await response.json();
+            console.log(data)
+            setCartQuantity(0)
+            getCart()
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    const updateCart = async (selectedID, selectedQuantity) => {
+
+        if (selectedQuantity > 0) {
             const formData = new URLSearchParams();
             formData.append('product_id', selectedID);
             formData.append('field', 'quantity');
             formData.append('value', selectedQuantity);
-            
+
             let options = {
                 method: "PATCH",
                 body: formData.toString(),
@@ -97,55 +93,53 @@ function BasketPage() {
                 console.log(data)
                 getCart()
             }
-            
+
             catch (error) {
                 console.log(error)
             }
         }
     }
 
-      const calculateTotal = () => {
-        let lines = cart && cart.cartlines
-        var total = 0;
-        for(var i=0; i<lines.length; i++){
-            total += parseInt(lines[i].price) * lines[i].quantity;
-        }
+    const calculateTotal = () => {
+        console.log(cart)
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        const priceArr = cart.cartlines.map((i) => { return parseInt(i.offerprice === "0.00" ? i.price * i.quantity : i.offerprice * i.quantity) })
+        const total = priceArr.reduce(reducer)
         setTotalPrice(total)
-      }
+    }
 
     return (
         <section>
-            <h2>Din kurv</h2>
-            {cart.status === false ? <p>Ingen produkter i kurven</p> : null}
+            {!loginData.access_token && <h2>Du skal være logget ind for at se din kurv</h2>}
+            {loginData.access_token && cart.status === false ? <p>Ingen produkter i kurven</p> : null}
             <ul>
-            {cart.cartlines && cart.cartlines.map((item, i) => { 
-            return (
-            <li className={Style.cartline} key={i}>
-                <img src={item.image_fullpath} alt={item.name}></img>
-                <p>{item.name}</p>
-                <div>
-                    <p>Antal:</p>
-                    <button onClick={()=>{updateCart(item.product_id, (parseInt(item.quantity)+1))}}>+</button>
-                    <p>{item.quantity}</p>
-                    <button onClick={() =>{updateCart(item.product_id, (parseInt(item.quantity)-1))}}>-</button>
-                </div>
-                <div>{item.offerprice === "0.00" ?<p>Pris: {parseInt(item.price * item.quantity)}</p> : <p className={Style.offer}>Pris: {parseInt(item.offerprice * item.quantity)}</p>}</div>
-                <button onClick={()=>{removeFromCart(item.id)}}>X</button>
-            </li>
-            )
-        })}
-        </ul>
-        <div className={Style.totalGrid}>
-            {cart.cartlines ? 
-            <>
-            <p>Beløb</p>
-            <div>DKK {totalPrice}<p>Prisen er inkl. moms</p></div> 
-            <button onClick={()=>{clearCart()}}>Fjern alt fra kurven</button>
-            </>
-            : null}
-            {!loginData.access_token ? <p>Log ind for at se din kurv</p> : null}
-        </div>
-        {cart.cartlines ? <Link to="/kassen"><button onClick={()=>{setProductName("Kassen");}}>Til kassen</button></Link> : null}
+                {cart.cartlines && cart.cartlines.map((item, i) => {
+                    return (
+                        <li className={Style.cartline} key={i}>
+                            <img src={item.image_fullpath} alt={item.name}></img>
+                            <p>{item.name}</p>
+                            <div>
+                                <p>Antal:</p>
+                                <button className={Style.quant} onClick={() => { updateCart(item.product_id, (parseInt(item.quantity) - 1)) }}>-</button>
+                                <p>{item.quantity}</p>
+                                <button className={Style.quant} onClick={() => { updateCart(item.product_id, (parseInt(item.quantity) + 1)) }}>+</button>
+                            </div>
+                            {item.offerprice === "0.00" ? <p className={Style.price}>Pris: {parseInt(item.price * item.quantity)}</p> : <p className={Style.offer}>Pris: {parseInt(item.offerprice * item.quantity)}</p>}
+                            <button className={Style.delete} onClick={() => { removeFromCart(item.id) }}>X</button>
+                        </li>
+                    )
+                })}
+            </ul>
+            <div className={Style.totalGrid}>
+                {cart.cartlines ?
+                    <>
+                        <p>BELØB</p>
+                        <span><p>DKK {totalPrice}</p><p>Prisen er inkl. moms</p></span>
+                        <button onClick={() => { clearCart() }}>RYD</button>
+                    </>
+                    : null}
+            </div>
+                {cart.cartlines ? <Link to="/kassen"><button className={Style.toCart} onClick={() => { setProductName("Kassen"); }}>Til kassen</button></Link> : null}
         </section>
     )
 }
