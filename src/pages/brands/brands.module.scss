@@ -217,3 +217,10 @@
     margin: 0;
     width: 300px;
 }
+
+@media screen and (max-width: 1600px) {
+    .productWrapper{
+        margin:0;
+        width: 100%;
+    }
+}

@@ -43,7 +43,7 @@ function HistoryPage(){
 
     return (
         loginData.access_token ? 
-        <ul>
+        <ul className={Style.list}>
             {orderData.items && orderData.items.map((item, i) =>{
                return (
                 <li className={Style.listItem}>

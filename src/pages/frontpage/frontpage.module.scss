@@ -186,3 +186,37 @@
         }
     }
 }
+
+@media screen and (max-width: 1600px) {
+    .wrapper{
+        margin:0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .favoriteGrid{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .favoriteGridItem{
+        grid-template-columns: 1fr;
+        height: auto;
+        div{
+            height:auto;
+            width: 100%;
+            img{
+                transform:none;
+                width: 100%;
+            }
+        }
+    }
+    .hero{
+        grid-template-columns: 1fr;
+        .heroImage{
+            display:none;
+        }
+    }
+}

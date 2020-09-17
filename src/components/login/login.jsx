@@ -68,10 +68,10 @@ function Login() {
 
     return (
         <>
-            <h4>{loginData && loginData.username ? `Du er logget ind som ${loginData.username}` : message}</h4>
             <form className={Style.loginform} onSubmit={handleSubmit(onSubmit)}>
-                <b>Log in</b>
-                <label>Username:</label>
+                <h2>Log ind</h2>
+                <h3>{loginData && loginData.username ? `Du er logget ind som ${loginData.username}` : message}</h3>
+                <label>Brugernavn:</label>
                 <input name="username" ref={register({ required: true })} />
                     {errors.username && <span>Please fill out username</span>}
                 <label>Password:</label>

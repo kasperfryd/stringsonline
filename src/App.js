@@ -10,9 +10,11 @@ import Routes from './routes/routes';
 
 
 // Cleanup
+// Comments
+// Mobil styling
+
+
 // styling
-
-
 // Ratings
 // Content on termspage
 // Sortering

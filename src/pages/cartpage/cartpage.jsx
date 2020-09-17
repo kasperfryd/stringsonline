@@ -110,9 +110,9 @@ function BasketPage() {
 
     return (
         <section>
-            {!loginData.access_token && <h2>Du skal være logget ind for at se din kurv</h2>}
-            {loginData.access_token && cart.status === false ? <p>Ingen produkter i kurven</p> : null}
-            <ul>
+            {!loginData.access_token && <h2 className={Style.error}>Du skal være logget ind for at se din kurv</h2>}
+            {loginData.access_token && cart.status === false ? <h2 className={Style.error}>Ingen produkter i kurven</h2> : null}
+            <ul className={Style.list}>
                 {cart.cartlines && cart.cartlines.map((item, i) => {
                     return (
                         <li className={Style.cartline} key={i}>

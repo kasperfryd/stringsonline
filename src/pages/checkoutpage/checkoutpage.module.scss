@@ -228,3 +228,27 @@
     
     }
 }
+
+@media screen and (max-width: 1200px){
+
+    .formGrid{
+        grid-template-columns: 1fr;
+    }
+    .orderCompleteGrid{
+        grid-template-columns: 1fr;
+        
+            .completeContainer{
+                width: auto;
+                button{
+                    width: auto;
+                }
+                
+                    .listGridItem{
+                        grid-template-columns: 1fr;
+                    }
+            }
+        aside{
+            text-align:center;
+        }
+        }
+}

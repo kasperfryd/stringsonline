@@ -43,17 +43,18 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
+}
 
-/*     button{
-        background-color: $theme-interact;
-        border: solid 1px rgb(60,60,60);
-        outline: none;
-        width: -webkit-fill-available;
-        height: 100%;
-        margin: 0;
-        padding: 8px;
-        font-size: 1.1rem;
-        border-bottom-right-radius: 8px;
-        border-top-right-radius: 8px;
-    } */
+@media screen and (max-width: 900px){
+    .list{
+        padding:0;
+    }
+    .listItem{
+        p:nth-child(1){
+            width:auto;
+        }
+        p:nth-child(3){
+            width:auto;
+        }
+    }
 }

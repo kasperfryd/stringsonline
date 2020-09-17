@@ -1,5 +1,6 @@
 @import 'theme.scss';
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap');
+
 .mainWrapper{
     font-family: 'Titillium Web', sans-serif;
     width: 80%;
@@ -8,4 +9,18 @@
     background-color: $theme-bg-dark;
     color:white;
     margin:auto;
+    min-height: calc(100vh - 20vh); 
+
+}
+
+@media screen and (max-width: 1600px) {
+    .mainWrapper{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1350px){
+    .mainWrapper{
+        width: 90%;
+    }
 }

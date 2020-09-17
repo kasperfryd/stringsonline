@@ -7,7 +7,6 @@ function LoginPage(){
 
     return (
         <section className={"mainContainer"}>
-            <h1>Log ind</h1>
             <Login></Login>
         </section>
     )

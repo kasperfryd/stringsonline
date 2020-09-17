@@ -15,3 +15,28 @@
         width: 25%;
     }
 }
+
+
+@media screen and (max-width: 1200px){
+    .footer{
+        img{
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 900px){
+    .footer{
+        img{
+            width: 65%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .footer{
+        img{
+            width: 80%;
+        }
+    }
+}

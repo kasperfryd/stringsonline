@@ -5,11 +5,11 @@
     margin-left: 10%;
     margin: 5%;
     margin-bottom: 25%;
-    h4{
+    h2{
         text-align: start;
         margin-top:$margin;
         margin-bottom: $margin;
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
     label{
         display:block;
@@ -31,11 +31,13 @@
         margin:$margin;
         transition: all 0.2s ease;
         outline:none;
-        border: solid 1px $theme-color;
+        border: solid 1px $theme-interact;
+        background-color:$theme-field-bg;
+        color:white;
     }
     input:focus{
         outline: none;
-        border: solid 1px $theme-color-dark;
+        border: solid 1px darken($theme-interact, $amount: 20);
     }
 
     button{
@@ -45,7 +47,7 @@
         border:none;
         font-size: 1rem;
         padding: 6px 32px;
-        color:white;
+        color:black;
         border-radius: 4px;
         transition: all 0.4s ease;
         outline: none;
@@ -63,15 +65,22 @@
     }
     .loginbtn:focus{
         outline:none;
+        background-color: darken($theme-interact, $amount: 40)
     }
+
     .logoutbtn{
-        background-color: $alert-red;
+        background-color: $theme-interact;
     }
     .logoutbtn:hover{
-        background-color: $alert-red-dark;
+        background-color: darken($theme-interact, $amount: 10)
     }
-    button:hover{
-        background-color: $theme-color-dark;
+    .logoutbtn:active{
+        outline:none;
+        background-color: darken($theme-interact, $amount: 30)
+    }
+    .logoutbtn:focus{
+        outline:none;
+        background-color: darken($theme-interact, $amount: 40)
     }
 }
 
