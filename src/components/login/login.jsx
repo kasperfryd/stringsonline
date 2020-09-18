@@ -73,14 +73,16 @@ function Login() {
             <form className={Style.loginform} onSubmit={handleSubmit(onSubmit)}>
                 <h2>Log ind</h2>
                 <h3>{loginData && loginData.username ? `Du er logget ind som ${loginData.username}` : message}</h3>
+                {loginData && !loginData.user_id &&
+                <>
                 <label>Brugernavn:</label>
                 <input name="username" ref={register({ required: true })} />
                     {errors.username && <span>Please fill out username</span>}
                 <label>Password:</label>
                 <input name="password" type="password" ref={register({ required: true })}></input>
                     {errors.password && <span>Please fill out password</span>}
-                {loginData && !loginData.user_id &&
                     <button className={Style.loginbtn}>LOG IND</button>
+                </>
                 }
                 {loginData && loginData.user_id &&
                     <button onClick={() => {logOut() }} className={Style.logoutbtn}>LOG UD</button>

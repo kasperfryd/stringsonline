@@ -10,11 +10,11 @@
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 0.5fr;
-    height: 55vh;
+    height: auto;
     margin-top: 16px;
 
     article {
-        height: 55vh;
+        height: auto;
         background-color: $theme-bg;
 
         h4 {
@@ -87,7 +87,7 @@
 .heroImage {
     object-fit: cover;
     width: 100%;
-    height: 55vh;
+    height: fit-content;
 }
 
 .offer {
@@ -193,6 +193,18 @@
     .wrapper{
         margin:0;
         width: 100%;
+    }
+    .favoriteGridItem{
+        grid-template-columns: 1fr;
+        height: auto;
+        div{
+            height:auto;
+            width: 100%;
+            img{
+                transform:none;
+                width: 100%;
+            }
+        }
     }
 }
 
