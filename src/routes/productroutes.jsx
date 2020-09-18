@@ -31,7 +31,7 @@ function ProductRoutes() {
                 return (
                     item.subgroups && item.subgroups.map((sub, i) => {
                         return (
-                            <Route key={i} path={"/" + item.title.toLowerCase() + "/" + sub.title.toLowerCase()}>
+                            <Route key={i} path={"/stringsonline/" + item.title.toLowerCase() + "/" + sub.title.toLowerCase()}>
                                 <ProductPage />
                             </Route>
                         )

@@ -12,35 +12,35 @@ function StaticRoutes() {
 
     return (
         <>
-            <Route path="/forside">
+            <Route path="/stringsonline/forside">
                 <FrontPage />
             </Route>
 
-            <Route path="/logind">
+            <Route path="/stringsonline/logind">
                 <LoginPage />
             </Route>
 
-            <Route path="/betingelser">
+            <Route path="/stringsonline/betingelser">
                 <TermsPage />
             </Route>
 
-            <Route path="/ordrehistorik">
+            <Route path="/stringsonline/ordrehistorik">
                 <HistoryPage/>
             </Route>
 
-            <Route path="/kurv">
+            <Route path="/stringsonline/kurv">
                 <CartPage />
             </Route>
 
-            <Route path="/kassen">
+            <Route path="/stringsonline/kassen">
                 <CheckoutPage/>
             </Route>
 
-            <Route path="/søgeresultat">
+            <Route path="/stringsonline/søgeresultat">
                 <SearchPage />
             </Route>
 
-            <Route exact path="/">
+            <Route exact path="/stringsonline/">
                 <FrontPage/>
             </Route>
         </>

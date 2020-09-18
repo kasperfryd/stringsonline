@@ -191,11 +191,11 @@
             display: inline-block;
         }
         button:hover{
-            background-color: darken($theme-interact, $amount: 10)
+            background-color: darken($theme-cta, $amount: 10)
         }
         button:active{
             outline:none;
-            background-color: darken($theme-interact, $amount: 30)
+            background-color: darken($theme-cta, $amount: 30)
         }
         button:focus{
             outline:none;

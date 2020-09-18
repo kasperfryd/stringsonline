@@ -136,7 +136,7 @@ function BasketPage() {
                     </>
                     : null}
             </div>
-            {cart.cartlines ? <Link to="/kassen"><button className={Style.toCart} onClick={() => { setProductName("Kassen"); }}>Til kassen</button></Link> : null}
+            {cart.cartlines ? <Link to="/stringsonline/kassen"><button className={Style.toCart} onClick={() => { setProductName("Kassen"); }}>Til kassen</button></Link> : null}
         </section>
     )
 }

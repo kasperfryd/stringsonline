@@ -36,7 +36,7 @@ function FrontPage() {
                         <h3>{heroData.item.brand}</h3>
                         <h4>{heroData.item.name}</h4>
                         <p>SE DEN NYE GENERERATION HALVACOUSTISKE</p>
-                        <Link to="/guitarer/westernguitarer"><button onClick={() => { setGroupID(2); setSubID(3); setProductID(15); setGroupName("Guitarer"); setSubgroupName("Westerguitarer"); setProductName(heroData.item.name) }}>Læs mere</button></Link>
+                        <Link to="/stringsonline/guitarer/westernguitarer"><button onClick={() => { setGroupID(2); setSubID(3); setProductID(15); setGroupName("Guitarer"); setSubgroupName("Westerguitarer"); setProductName(heroData.item.name) }}>Læs mere</button></Link>
                     </article>
                 </section>
                 <h2 className={Style.favoritText}>Kundernes <b>favoritter</b></h2>

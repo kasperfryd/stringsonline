@@ -220,7 +220,7 @@ function CheckoutPage() {
             {latestOrder && latestOrder.order && latestOrder.order.orderlines &&
                 <section className={Style.orderCompleteGrid}>
                     <section className={Style.completeContainer}>
-                        <Link to="/forside"><button>TAK FOR DIN BESTILLING</button></Link>
+                        <Link to="/stringsonline/forside"><button>TAK FOR DIN BESTILLING</button></Link>
                         <ul>
                             <li><p>Ordrenr.</p><p className={Style.colored}>{latestOrder.order.id}</p></li>
                             {latestOrder.order.orderlines.map((item, i) => {

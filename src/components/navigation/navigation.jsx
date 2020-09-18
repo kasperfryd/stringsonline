@@ -34,7 +34,7 @@ function Navigation() {
                 <ul className={Style.menu_shown}>
                     {groups && groups.productgroups && groups.productgroups.items &&  groups.productgroups.items.map((item, i) => {
                         if (!item.subgroups) {
-                            return <Link  onClick={() => {setGroupID(item.id); setGroupName(item.title)}} className={Style.link} key={i} to={"/" + item.title.toLowerCase()}>
+                            return <Link  onClick={() => {setGroupID(item.id); setGroupName(item.title)}} className={Style.link} key={i} to={"/stringsonline/" + item.title.toLowerCase()}>
                                 {<p>{item.title}</p>}
                             </Link>
                         }
@@ -44,7 +44,7 @@ function Navigation() {
                                 <Submenu title={<p className={Style.link}>{item.title}</p>} child = {
                                 item.subgroups && item.subgroups.map((sub, i) => {
                                     return( 
-                                            <Link onClick={() =>  {setGroupID(item.id); setSubID(sub.id); setGroupName(item.title); setSubgroupName(sub.title); setProductName("")}} className={Style.link} key={i} to={"/"+ item.title.toLowerCase() + "/" + sub.title.toLowerCase()}>{sub.title}</Link>
+                                            <Link onClick={() =>  {setGroupID(item.id); setSubID(sub.id); setGroupName(item.title); setSubgroupName(sub.title); setProductName("")}} className={Style.link} key={i} to={"/stringsonline/"+ item.title.toLowerCase() + "/" + sub.title.toLowerCase()}>{sub.title}</Link>
                                         )
                                     })}
                                     ></Submenu>
@@ -57,7 +57,7 @@ function Navigation() {
                         <Submenu title={<p className={Style.link}>Brands</p>} child = {
                         brands && brands.items && brands.items.map((item, i) => {
                             return (
-                                <Link onClick={() =>  {setBrandID(item.id); setGroupName("Brands"); setSubgroupName(item.title); setProductName("")}} className={Style.link} key={i} to={"/brands/" + item.title.toLowerCase()}>{item.title}</Link>
+                                <Link onClick={() =>  {setBrandID(item.id); setGroupName("Brands"); setSubgroupName(item.title); setProductName("")}} className={Style.link} key={i} to={"/stringsonline/brands/" + item.title.toLowerCase()}>{item.title}</Link>
                         )}
                     )}
                     ></Submenu>

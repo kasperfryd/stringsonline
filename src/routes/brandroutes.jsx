@@ -23,7 +23,7 @@ function BrandRoutes() {
     return (
         brands && brands.items && brands.items ? brands.items.map((item, i) => {
             return (
-                        <Route key={i} path={"/brands/" + item.title.toLowerCase()}>
+                        <Route key={i} path={"/stringsonline/brands/" + item.title.toLowerCase()}>
                             <BrandsPage />
                         </Route>
                     )}
