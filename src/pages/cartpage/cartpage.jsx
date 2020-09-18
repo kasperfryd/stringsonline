@@ -23,8 +23,6 @@ function BasketPage() {
         }
     }, [cart, getCart])
 
-    //console.log(cart)
-
     const removeFromCart = async (selectedID) => {
 
         let formData = new FormData()
@@ -101,7 +99,6 @@ function BasketPage() {
     }
 
     const calculateTotal = () => {
-        console.log(cart)
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
         const priceArr = cart.cartlines.map((i) => { return parseInt(i.offerprice === "0.00" ? i.price * i.quantity : i.offerprice * i.quantity) })
         const total = priceArr.reduce(reducer)
@@ -139,7 +136,7 @@ function BasketPage() {
                     </>
                     : null}
             </div>
-                {cart.cartlines ? <Link to="/kassen"><button className={Style.toCart} onClick={() => { setProductName("Kassen"); }}>Til kassen</button></Link> : null}
+            {cart.cartlines ? <Link to="/kassen"><button className={Style.toCart} onClick={() => { setProductName("Kassen"); }}>Til kassen</button></Link> : null}
         </section>
     )
 }

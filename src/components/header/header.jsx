@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import Style from './header.module.scss'
 import {Link} from 'react-router-dom'
 import BreadCrumb from '../breadcrumb/breadcrumb'

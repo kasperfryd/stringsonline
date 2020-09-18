@@ -7,13 +7,11 @@ function Login() {
 
     // set states needed by component
     const [message, setMessage] = useState("Indtast login oplysninger")
-    const { loginData, setLoginData, getCart } = useContext(AppContext);
+    const { loginData, setLoginData } = useContext(AppContext);
 
     const onSubmit = (data, e) => sendLoginRequest(data, e);
 
     const { register, handleSubmit, errors } = useForm();
-
-    console.log(loginData)
 
     // POST request with formdata from login input fields
     const sendLoginRequest = (data, e) => {
@@ -24,7 +22,6 @@ function Login() {
 
         let url = 'https://api.mediehuset.net/token';
 
-        console.log(formData)
         fetch(url, {
             method: "POST",
             body: formData,
@@ -39,7 +36,6 @@ function Login() {
     const handleSessionData = (key) => {
         if (!key.message) {
             setLoginData(key)
-            console.log(key)
             sessionStorage.setItem('token', JSON.stringify(key))
         }
 

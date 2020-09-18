@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Route } from 'react-router-dom'
 import ProductPage from '../pages/productpage/productpage'
 import { AppContext } from "../context/ContextProvider"
-import BrandsPage from '../pages/brands/brandspage';
 
 function ProductRoutes() {
 

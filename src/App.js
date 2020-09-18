@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Switch} from 'react-router-dom'
 import './components/theme/global.scss'
 import Navigation from './components/navigation/navigation'
 import Header from './components/header/header'
@@ -9,11 +9,12 @@ import Routes from './routes/routes';
 // TODO:
 
 
-// Cleanup
 // Comments
+// Fix double entry i kurv
+
+
+// Cleanup
 // Mobil styling
-
-
 // styling
 // Ratings
 // Content on termspage

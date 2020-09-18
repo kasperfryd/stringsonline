@@ -3,11 +3,6 @@ import Style from './submenu.module.scss';
 
 function Submenu(props) {
 
-    /** Accordian accepts these props
-   *    * title (deafult "Accordian")
-   *    * child (required for content)
-   */
-
     const child = props.child || "No child content selected"
     const title = props.title || "Accordian"
 

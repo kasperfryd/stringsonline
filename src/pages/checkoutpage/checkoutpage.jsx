@@ -6,7 +6,7 @@ import Style from './checkoutpage.module.scss'
 
 function CheckoutPage() {
 
-    const { loginData, setCartQuantity, cartQuantity, doFetch } = useContext(AppContext);
+    const { loginData, setCartQuantity, cartQuantity } = useContext(AppContext);
     const [orderComplete, setOrderComplete] = useState([])
     const [latestOrder, setLatestOrder] = useState([])
     const [delivery, setDelivery] = useState()
@@ -22,7 +22,6 @@ function CheckoutPage() {
             let url = `https://api.mediehuset.net/stringsonline/orders/${orderComplete.order_id}`
             const response = await fetch(url, options);
             const data = await response.json();
-            console.log(data)
             setLatestOrder(data)
         }
 
@@ -30,11 +29,9 @@ function CheckoutPage() {
             console.log(error)
         }
     }
-    console.log(delivery)
     const submitOrder = async (data, e) => {
 
-        //e.target.reset();
-        console.log(data)
+        e.target.reset();
 
         const formData = new URLSearchParams();
         formData.append('firstname', data.firstname.toString());
@@ -48,8 +45,6 @@ function CheckoutPage() {
         formData.append('delivery_zipcode', data.delivery_zip ? parseInt(data.delivery_zip) : parseInt(data.zip));
         formData.append('delivery_city', data.delivery_city ? data.delivery_city.toString() : data.city.toString());
 
-        console.log(formData.toString())
-
         let options = {
             method: "POST",
             body: formData,
@@ -62,7 +57,6 @@ function CheckoutPage() {
             const url = `https://api.mediehuset.net/stringsonline/orders`
             const response = await fetch(url, options);
             const data = await response.json();
-            console.log(data)
             setOrderComplete(data)
         }
 
@@ -71,10 +65,8 @@ function CheckoutPage() {
         }
     }
 
-    console.log(latestOrder)
-
     useEffect(() => {
-        if (orderComplete.status == true) {
+        if (orderComplete.status === true) {
             setCartQuantity(0)
             getLatestOrder()
         }
@@ -232,7 +224,7 @@ function CheckoutPage() {
                         <ul>
                             <li><p>Ordrenr.</p><p className={Style.colored}>{latestOrder.order.id}</p></li>
                             {latestOrder.order.orderlines.map((item, i) => {
-                                return <li className={Style.listGridItem}><p>Produkt</p> <p className={Style.colored}>{item.name}</p> <p>{item.quantity} stk.</p> <p>DKK {item.price}</p></li>
+                                return <li key={i} className={Style.listGridItem}><p>Produkt</p> <p className={Style.colored}>{item.name}</p> <p>{item.quantity} stk.</p> <p>DKK {item.price}</p></li>
                             })}
                             <li className={Style.tax}><p>Moms</p><p>DKK {calculateTax(latestOrder.order.total)}</p></li>
                             <li className={Style.total}><p>I alt</p><p>DKK {latestOrder.order.total}</p></li>

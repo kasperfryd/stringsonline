@@ -28,8 +28,6 @@ function Navigation() {
         getBrands()
     }, [])
 
-    //console.log(brands)
-
     // return html
     return (
             <aside className={Style.aside}>

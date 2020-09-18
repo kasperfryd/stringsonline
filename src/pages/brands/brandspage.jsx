@@ -107,13 +107,11 @@ function BrandsPage() {
         }
     }, [])
 
-    console.log(brand)
-
     return (
         <section className={Style.productWrapper}>
             {productName === "" && brand && brand.item &&
                 <section className={Style.topGrid}>
-                        <img className={Style.brandImage} src={brand.item.image_fullpath} alt={brand.item.image_filename}></img>
+                    <img className={Style.brandImage} src={brand.item.image_fullpath} alt={brand.item.image_filename}></img>
                     <article className={Style.brandContainer}>
                         <h2>{brand.item.title}</h2>
                         <p>{brand.item.description}</p>
