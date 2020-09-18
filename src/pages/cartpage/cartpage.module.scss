@@ -211,8 +211,14 @@
     }
 
     .cartline{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         padding: 16px;
+
+        div{
+            .quant:nth-child(2){
+                justify-self: end;
+            }
+        }
     }
 
     .totalGrid{
