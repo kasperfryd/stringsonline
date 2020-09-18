@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/stringsonline/static/css/main.c6cbc127.chunk.css",
-    "main.js": "/stringsonline/static/js/main.b3f6c5b9.chunk.js",
-    "main.js.map": "/stringsonline/static/js/main.b3f6c5b9.chunk.js.map",
+    "main.css": "/stringsonline/static/css/main.e0bac0a8.chunk.css",
+    "main.js": "/stringsonline/static/js/main.30aba909.chunk.js",
+    "main.js.map": "/stringsonline/static/js/main.30aba909.chunk.js.map",
     "runtime-main.js": "/stringsonline/static/js/runtime-main.2a3026bc.js",
     "runtime-main.js.map": "/stringsonline/static/js/runtime-main.2a3026bc.js.map",
     "static/js/2.e7743d77.chunk.js": "/stringsonline/static/js/2.e7743d77.chunk.js",
     "static/js/2.e7743d77.chunk.js.map": "/stringsonline/static/js/2.e7743d77.chunk.js.map",
     "index.html": "/stringsonline/index.html",
-    "precache-manifest.894753741f7865765219e64230ae3015.js": "/stringsonline/precache-manifest.894753741f7865765219e64230ae3015.js",
+    "precache-manifest.197524be1b53e6bbbb4d416feb93a086.js": "/stringsonline/precache-manifest.197524be1b53e6bbbb4d416feb93a086.js",
     "service-worker.js": "/stringsonline/service-worker.js",
-    "static/css/main.c6cbc127.chunk.css.map": "/stringsonline/static/css/main.c6cbc127.chunk.css.map",
+    "static/css/main.e0bac0a8.chunk.css.map": "/stringsonline/static/css/main.e0bac0a8.chunk.css.map",
     "static/js/2.e7743d77.chunk.js.LICENSE.txt": "/stringsonline/static/js/2.e7743d77.chunk.js.LICENSE.txt",
     "static/media/hero-banner.png": "/stringsonline/static/media/hero-banner.e6058fbe.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2a3026bc.js",
     "static/js/2.e7743d77.chunk.js",
-    "static/css/main.c6cbc127.chunk.css",
-    "static/js/main.b3f6c5b9.chunk.js"
+    "static/css/main.e0bac0a8.chunk.css",
+    "static/js/main.30aba909.chunk.js"
   ]
 }
