@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e3848d5462c3a6adce0ed4482690d8b1",
+    "revision": "bf1f120b2f36bfaac2161351b037b69a",
     "url": "/stringsonline/index.html"
   },
   {
-    "revision": "6d426005e35db36e1f35",
-    "url": "/stringsonline/static/css/main.c64a55c4.chunk.css"
+    "revision": "62099b2d2266bdc79f1d",
+    "url": "/stringsonline/static/css/main.7ccbb0da.chunk.css"
   },
   {
     "revision": "b0a3c2b5f62feb3240ed",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/stringsonline/static/js/2.ac5ce766.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6d426005e35db36e1f35",
-    "url": "/stringsonline/static/js/main.fcb355c0.chunk.js"
+    "revision": "62099b2d2266bdc79f1d",
+    "url": "/stringsonline/static/js/main.6be955c4.chunk.js"
   },
   {
     "revision": "23eaf9f7701217542ab6",
