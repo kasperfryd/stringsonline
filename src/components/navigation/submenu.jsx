@@ -3,9 +3,11 @@ import Style from './submenu.module.scss';
 
 function Submenu(props) {
 
+    // Props submenu component accepts
     const child = props.child || "No child content selected"
     const title = props.title || "Accordian"
 
+    // State to set submenu active
     const [active, setActive] = useState(false)
 
     return (

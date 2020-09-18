@@ -6,30 +6,37 @@ import ReactStars from 'react-stars'
 
 function BrandsPage() {
 
+    // Imports from context
     const { brandID, doFetch, addToCart, setProductName, loginData, productID, productName, setProductID } = useContext(AppContext);
+    
+    // States needed by component
     const [brand, setBrand] = useState([])
     const [avgRating, setAvgRating] = useState([])
     const [amount, setAmount] = useState(1)
     const [selected, setSelected] = useState([])
 
+    // Function to fetch a specific brand
     const getBrandDetails = async () => {
         let url = `https://api.mediehuset.net/stringsonline/brands/${brandID}`
         let res = await doFetch(url)
         setBrand(res)
     }
 
+    // Function to get user rating for product
     const getRating = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/ratings/average/${id}`
         let res = await doFetch(url)
         setAvgRating(res)
     }
 
+    // Function to specific product by id
     const getProductByID = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/products/${id}`
         let res = await doFetch(url)
         setSelected(res)
     }
 
+    // Function to check if user has allready rated product
     const hasUserRated = async (id) => {
         let options = {
             method: "GET",
@@ -41,7 +48,6 @@ function BrandsPage() {
             let url = `https://api.mediehuset.net/stringsonline/ratings/${id}`
             const response = await fetch(url, options);
             const data = await response.json();
-            console.log(data)
             if (data.status === false) {
                 return false
             }
@@ -54,10 +60,8 @@ function BrandsPage() {
         }
     }
 
+    // Function to POST rating for selected product
     const sendRating = async (rating) => {
-
-        console.log("rating er ", rating)
-        console.log("product id er", productID)
 
         const formData = new URLSearchParams();
         formData.append("product_id", parseInt(productID))
@@ -81,6 +85,7 @@ function BrandsPage() {
         }
     }
 
+    // Function to handle rating when user changes react-stars component
     const ratingChanged = async (newRating) => {
         console.log(newRating)
         if (loginData.access_token) {
@@ -101,12 +106,14 @@ function BrandsPage() {
         }
     }
 
+    // useEffect to get specific brand details on component mount
     useEffect(() => {
         if (brandID !== 0) {
             getBrandDetails()
         }
     }, [])
 
+    // Return html
     return (
         <section className={Style.productWrapper}>
             {productName === "" && brand && brand.item &&

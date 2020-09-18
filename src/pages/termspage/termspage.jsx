@@ -2,6 +2,7 @@ import React from 'react'
 import Style from './termspage.module.scss'
 
 function TermsPage() {
+    // Return html with lorem ipsum terms
     return (
         <section>
             <article className={Style.terms}>

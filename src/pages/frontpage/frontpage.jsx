@@ -6,27 +6,34 @@ import heroImg from '../../assets/hero-banner.png';
 
 function FrontPage() {
 
+    // Imports from context
     const { setProductID, setProductName, doFetch, setGroupID, setGroupName, setSubID, setSubgroupName, addToCart } = useContext(AppContext);
+    
+    // States needed by component
     const [heroData, setHeroData] = useState([])
     const [allData, setAllData] = useState([])
 
+    // Function to get the hero product
     const getHeroProduct = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/products/${id}`
         let res = await doFetch(url)
         setHeroData(res)
     }
 
+    // Function to fetch all data
     const getAllData = async () => {
         let url = `https://api.mediehuset.net/stringsonline/`
         let res = await doFetch(url)
         setAllData(res)
     }
 
+    // useEffect to get a specific product for the hero and get all data for favorites
     useEffect(() => {
         getHeroProduct(16)
         getAllData()
     }, [])
 
+    // Return html
     return (
         heroData.item ?
             <div className={Style.wrapper}>

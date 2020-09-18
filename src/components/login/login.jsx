@@ -5,12 +5,16 @@ import { AppContext } from "../../context/ContextProvider"
 
 function Login() {
 
-    // set states needed by component
+    // Set states needed by component
     const [message, setMessage] = useState("Indtast login oplysninger")
+
+    // Imports from context
     const { loginData, setLoginData } = useContext(AppContext);
 
+    // React-hook-form onSubmit function, passes data to sendLoginRequest()
     const onSubmit = (data, e) => sendLoginRequest(data, e);
 
+    // Imports from react-hook-form
     const { register, handleSubmit, errors } = useForm();
 
     // POST request with formdata from login input fields
@@ -56,12 +60,14 @@ function Login() {
         }, 3500);
     }
 
+    // UseEffect to save loginData from sessionStorage if it allready exists
     useEffect(() => {
         if (sessionStorage.getItem('token')) {
             setLoginData(JSON.parse(sessionStorage.getItem('token')))
         }
     }, [])
 
+    // Return html
     return (
         <>
             <form className={Style.loginform} onSubmit={handleSubmit(onSubmit)}>

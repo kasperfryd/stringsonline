@@ -7,22 +7,28 @@ import Submenu from './submenu';
 
 function Navigation() {
 
+    // Imports from context
     const { doFetch, setGroupID, setSubID, setGroupName, setSubgroupName, setProductName, setBrandID } = useContext(AppContext);
+    
+    // States needed by component
     const [groups, setGroups] = useState([])
     const [brands, setBrands] = useState([])
 
+    // Function to fetch all data
     async function getGroups(){
         let url = `https://api.mediehuset.net/stringsonline/`
         let data = await doFetch(url)
         setGroups(data)
     }
 
+    // Function to fetch all brands
     async function getBrands(){
         let url = `https://api.mediehuset.net/stringsonline/brands`
         let data = await doFetch(url)
         setBrands(data)
     }
 
+    // useEffect that runs when component mounts, to get data
     useEffect(() => {
         getGroups()
         getBrands()

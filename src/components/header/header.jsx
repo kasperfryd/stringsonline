@@ -10,9 +10,13 @@ import mailIcon from '../../assets/mail-icon.png'
 
 function Header(){
 
+    // Imports from context
     const {setGroupName, setSubgroupName, setProductName, setSearchRes, cartQuantity, loginData} = useContext(AppContext);
+    
+    // States to save searchQery
     const [searchQuery, setSearchQuery] = useState("")
 
+    // Function to search in API
     async function doSearch(query){
         try {
           let url =`https://api.mediehuset.net/stringsonline/search/${query}`
@@ -25,6 +29,7 @@ function Header(){
         }
       }
 
+    // Return html
     return (
         <header className={Style.wrapper}>
         <div className={Style.topGrid}>

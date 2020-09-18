@@ -5,21 +5,25 @@ import BrandsPage from '../pages/brands/brandspage';
 
 function BrandRoutes() {
 
+    // Import from context
     const { doFetch } = useContext(AppContext);
+    
+    // State needed by component
     const [brands, setBrands] = useState([])
 
+    // Function to get all brands
     async function getBrands() {
         let url = `https://api.mediehuset.net/stringsonline/brands`
         let data = await doFetch(url)
         setBrands(data)
     }
-    //console.log(brands)
 
+    // useEffect that runs when component mounts to get all brands
     useEffect(() => {
         getBrands()
     }, [])
 
-    // return html
+    // return routes from all brands
     return (
         brands && brands.items && brands.items ? brands.items.map((item, i) => {
             return (

@@ -10,6 +10,7 @@ import HistoryPage from '../pages/historypage/historypage'
 
 function StaticRoutes() {
 
+    // Return static routes back to App.js
     return (
         <>
             <Route path="/stringsonline/forside">

@@ -82,6 +82,7 @@
             font-size: 1.1rem;
             border-radius: 8px;
             transition: background-color 0.4s ease;
+            cursor: pointer;
         }
         button:hover{
             background-color: darken($theme-cta, $amount: 10)
@@ -189,6 +190,7 @@
             font-size: 1.1rem;
             border-radius: 8px;
             display: inline-block;
+            cursor: pointer;
         }
         button:hover{
             background-color: darken($theme-cta, $amount: 10)

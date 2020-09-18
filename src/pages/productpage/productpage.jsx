@@ -5,12 +5,16 @@ import ReactStars from 'react-stars'
 
 function ProductPage() {
 
+    // Imports from context
     const { data, setProductID, setProductName, doFetch, addToCart, productID, loginData, } = useContext(AppContext);
+    
+    // States needed by component
     const [sorted, setSorted] = useState([])
     const [sortedStatus, setSortedStatus] = useState(false)
     const [avgRating, setAvgRating] = useState([])
     const [amount, setAmount] = useState(1)
 
+    // Function to sort the array from type
     const sortArray = (type, array) => {
         const types = {
             price: 'price',
@@ -24,12 +28,14 @@ function ProductPage() {
         setSorted(sorted);
     };
 
+    // Function to get rating for specific ID
     const getRating = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/ratings/average/${id}`
         let res = await doFetch(url)
         setAvgRating(res)
     }
 
+    // Function to check if user has rated specific product
     const hasUserRated = async (id) => {
         let options = {
             method: "GET",
@@ -53,6 +59,7 @@ function ProductPage() {
         }
     }
 
+    // Function to POST rating with number of stars and product id
     const sendRating = async (rating) => {
 
         console.log("rating er ", rating)
@@ -80,6 +87,7 @@ function ProductPage() {
         }
     }
 
+    // Function to handle ratings onChange from react stars 
     const ratingChanged = async (newRating) => {
         if (loginData.access_token) {
             let status = await hasUserRated(productID)
@@ -99,6 +107,7 @@ function ProductPage() {
         }
     }
 
+    // Return html
     return (
         data.items ?
             <section className={Style.productWrapper}>

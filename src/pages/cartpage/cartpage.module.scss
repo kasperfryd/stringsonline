@@ -30,6 +30,7 @@
         background-color: $theme-cta;
         border:none;
         border-radius: 4px;
+        cursor: pointer;
     }
     .delete:focus{
         outline:none;
@@ -73,6 +74,7 @@
             background-color:$theme-interact;
             border:none;
             transition: background-color, 0.4s ease;
+            cursor: pointer;
         }
         .quant:hover{
             background-color: darken($theme-interact, $amount: 10)
@@ -141,6 +143,8 @@
         border-radius: 8px;
         font-size: 1.2rem;
         margin-right:8px;
+        cursor: pointer;
+
     }
     button:focus{
         outline:none;
@@ -173,6 +177,7 @@
     float:right;
     margin-top:8px;
     margin-bottom:5%;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1200px){

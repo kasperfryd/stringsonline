@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom'
 
 
 function BasketPage() {
+    
+    // Imports from context
     const { loginData, cart, getCart, setCart, setProductName, setCartQuantity } = useContext(AppContext);
+    
+    // State needed by component
     const [totalPrice, setTotalPrice] = useState(0)
 
+    // useEffect to clear cart if user is not logged in, and get cart if user is logged in
     useEffect(() => {
         if (loginData.access_token) {
             getCart()
@@ -17,12 +22,14 @@ function BasketPage() {
         }
     }, [loginData])
 
+    // useEffect to calculate the total value when cart changes
     useEffect(() => {
         if (cart.cartlines) {
             calculateTotal()
         }
     }, [cart, getCart])
 
+    // Function to DELETE single item from cart
     const removeFromCart = async (selectedID) => {
 
         let formData = new FormData()
@@ -47,6 +54,7 @@ function BasketPage() {
         }
     }
 
+    // Function to DELETE all from cart
     const clearCart = async () => {
 
         let options = {
@@ -68,6 +76,7 @@ function BasketPage() {
         }
     }
 
+    // Function to PATCH (update cart) from quantity and ID
     const updateCart = async (selectedID, selectedQuantity) => {
 
         if (selectedQuantity > 0) {
@@ -98,6 +107,7 @@ function BasketPage() {
         }
     }
 
+    // Function to calculate the total value of all product prices
     const calculateTotal = () => {
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
         const priceArr = cart.cartlines.map((i) => { return parseInt(i.offerprice === "0.00" ? i.price * i.quantity : i.offerprice * i.quantity) })
@@ -105,6 +115,7 @@ function BasketPage() {
         setTotalPrice(total)
     }
 
+    // Return html
     return (
         <section>
             {!loginData.access_token && <h2 className={Style.error}>Du skal være logget ind for at se din kurv</h2>}

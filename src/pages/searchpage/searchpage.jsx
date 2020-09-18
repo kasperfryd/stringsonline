@@ -5,20 +5,24 @@ import ReactStars from 'react-stars'
 
 function SearchPage() {
 
+    // Imports from context
     const { searchRes, setProductName, doFetch, productName, addToCart, loginData } = useContext(AppContext)
 
+    // States needed by component
     const [avgRating, setAvgRating] = useState([])
     const [selected, setSelected] = useState([])
     const [sorted, setSorted] = useState([])
     const [sortedStatus, setSortedStatus] = useState(false)
     const [amount, setAmount] = useState(1)
 
+    // Function to get product by specific id
     const getProductByID = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/products/${id}`
         let res = await doFetch(url)
         setSelected(res)
     }
 
+    // Function to sort array by type
     const sortArray = (type, array) => {
         const types = {
             price: 'price',
@@ -31,12 +35,14 @@ function SearchPage() {
         setSorted(sorted);
     };
 
+    // Function to get specific rating from ID
     const getRating = async (id) => {
         let url = `https://api.mediehuset.net/stringsonline/ratings/average/${id}`
         let res = await doFetch(url)
         setAvgRating(res)
     }
 
+    // Function to check if user has rated specific product
     const hasUserRated = async (id) => {
         let options = {
             method: "GET",
@@ -61,6 +67,7 @@ function SearchPage() {
         }
     }
 
+    // Function to POST rating with number of stars and product id
     const sendRating = async (rating, id) => {
 
         const formData = new URLSearchParams();
@@ -85,6 +92,7 @@ function SearchPage() {
         }
     }
 
+    // Function to handle rating onChange by react-stars component
     const ratingChanged = async (newRating) => {
         console.log(newRating)
         if (loginData.access_token) {
@@ -105,6 +113,7 @@ function SearchPage() {
         }
     }
 
+    // Return html
     return (
         <section className={Style.productWrapper}>
             {searchRes.items && productName === "" &&

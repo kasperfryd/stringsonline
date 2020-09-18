@@ -4,6 +4,7 @@ import Style from './footer.module.scss'
 
 function Footer() {
 
+    // Return footer
     return (
         <footer className={Style.footer}>
             <img src={footerImg} alt="footerimage"></img>

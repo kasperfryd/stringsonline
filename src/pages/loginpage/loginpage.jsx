@@ -5,6 +5,7 @@ import '../../components/theme/global.scss'
 
 function LoginPage(){
 
+    // Return html and login component
     return (
         <section className={"mainContainer"}>
             <Login></Login>

@@ -6,11 +6,15 @@ import Style from './checkoutpage.module.scss'
 
 function CheckoutPage() {
 
+    // Imports from context
     const { loginData, setCartQuantity, cartQuantity } = useContext(AppContext);
+    
+    // States needed by component
     const [orderComplete, setOrderComplete] = useState([])
     const [latestOrder, setLatestOrder] = useState([])
     const [delivery, setDelivery] = useState()
 
+    // Function to fetch the lates completed order
     const getLatestOrder = async () => {
         let options = {
             method: "GET",
@@ -29,6 +33,8 @@ function CheckoutPage() {
             console.log(error)
         }
     }
+
+    // Function to submit order when user has filled all form fields
     const submitOrder = async (data, e) => {
 
         e.target.reset();
@@ -65,6 +71,7 @@ function CheckoutPage() {
         }
     }
 
+    // useEffect that resets cart when order is completed
     useEffect(() => {
         if (orderComplete.status === true) {
             setCartQuantity(0)
@@ -72,6 +79,7 @@ function CheckoutPage() {
         }
     }, [orderComplete])
 
+    // Imports from react-hook-form and option to revalidate onChange
     const { register, handleSubmit, errors } = useForm(
         {
             mode: 'onBlur',
@@ -79,12 +87,16 @@ function CheckoutPage() {
         }
     );
 
+    // Function to calculate tax from item
     const calculateTax = (num) => {
         let tax = Math.round(num / 100 * 25)
         return tax + ".00"
     }
 
+    // Function to submit data
     const onSubmit = (data, e) => { submitOrder(data, e) }
+    
+    // Return html
     return (
         <main>
             {cartQuantity > 0 &&

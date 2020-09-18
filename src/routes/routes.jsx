@@ -6,6 +6,7 @@ import StaticRoutes from './staticroutes'
 
 function Routes() {
 
+    // Return all routes back to App.js
     return (
         <>
         <ProductRoutes/>

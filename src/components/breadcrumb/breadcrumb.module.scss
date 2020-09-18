@@ -6,6 +6,7 @@
         margin-right: 8px;
         list-style: none;
         display:inline-block;
+        cursor: pointer;
     }
     a{
         margin-right: 8px;
@@ -13,6 +14,7 @@
         text-decoration: none;
         display: inline-block;
         transition: color, 0.4s ease;
+        cursor: pointer;
     }
     a:hover{
         color: darken($theme-interact, $amount: 10)
@@ -20,4 +22,9 @@
     a:active{
         color: darken($theme-interact, $amount: 30)
     }
+}
+
+.home{
+    margin-right: 8px;
+    width: 25%;
 }
