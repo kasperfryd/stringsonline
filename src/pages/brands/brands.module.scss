@@ -224,5 +224,36 @@
     .productWrapper{
         margin:0;
         width: 100%;
+        .sortBar{
+            left:0;
+        }
+    }
+
+}
+
+@media screen and (max-width: 900px){
+    .detailContainer{
+        grid-template-columns: 1fr;
+    }
+    .brandLogo{
+        display:none;
+    }
+    .topImage{
+        width:100%
+    }
+}
+
+@media screen and (max-width: 600px){
+
+    .topGrid{
+        grid-template-columns: 1fr;
+    }
+
+    .gridItem{
+        grid-template-columns: 1fr;
+
+        img{
+            width:100%;
+        }
     }
 }

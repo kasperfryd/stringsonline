@@ -258,5 +258,41 @@
         aside{
             text-align:center;
         }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .formGrid{
+        grid-template-columns: 1fr;
+
+        .payButton{
+            width: auto;
         }
+
+        div{
+            width: auto;
+        }
+
+        input{
+            width: auto;
+        }
+    }
+    .orderCompleteGrid{
+        grid-template-columns: 1fr;
+        
+            .completeContainer{
+                width: auto;
+                button{
+                    width: auto;
+                }
+                
+                .listGridItem{
+                    grid-template-columns: 1fr;
+                }
+            }
+        aside{
+            text-align:center;
+        }
+    }
+
 }
