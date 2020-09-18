@@ -265,9 +265,11 @@
     .topNav{
         .links{
             width: auto;
+            padding:8px;
             a{
                 button{
                     width:auto;
+                    float:right;
                 }
             }
         }
