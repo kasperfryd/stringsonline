@@ -2,7 +2,7 @@
   "name": "stringsonline",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://tomgrooves.github.io/stringsonline",
+  "homepage": "http://kasperfryd.github.io/stringsonline",
 
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
